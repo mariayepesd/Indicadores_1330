@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form action="prueba2.html" method="get">
+            <h2>What Can JavaScript Do?</h2>
+
+            <p>JavaScript can change HTML attribute values.</p>
+
+            <p>In this case JavaScript changes the value of the src (source) attribute of an image.</p>
+
+            <button onclick="evitarPostback()">Turn on the light</button>
+
+            <img id="myImage" src="./img/pic_bulboff.gif" style="width:100px">
+
+            <button onclick="document.getElementById('myImage').src='./img/pic_bulboff.gif'">Turn off the light</button>
+
+            <input type="submit" name="btnEnviar" id="btnIdEnviar" value="Enviar">
+
+            <input type="text" name="txtEnviar" id="txtIdEnviar" value="123">
+        </form>
+        <script>
+            function evitarPostback()
+            {
+                document.getElementById('myImage').src='./img/pic_bulbon.gif';
+                return false;
+            }
+        </script>
+    </body>
+</html>

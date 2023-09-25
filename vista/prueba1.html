@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script>
+            function llenarElementos()
+            {
+                document.getElementById("btn1").innerHTML = "Hola JavaScript!";
+                document.getElementById("idH21").innerHTML = "Hola JavaScript!";
+                document.getElementById("idP1").innerHTML = "Hola JavaScript!";
+                document.getElementById("txt1").value = "Hola JavaScript!";
+                document.getElementById("btn2").value = "Hola JavaScript!";
+            }
+        </script>
+    </head>
+    <body>
+        <h2 id="idH21">Esto es un H2</h2>
+
+        <p id="idP1">Esto es un párrafo.</p>
+
+        <button id="btn1" type="button" onclick='llenarElementos()'>Click Me!</button>
+        <input id="btn2" type="submit" value="DarClic">
+        <input id="txt1" type="text" value="1234">
+    </body>
+</html>
