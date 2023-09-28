@@ -14,7 +14,7 @@
                 $con = $this->objUsuario->getContrasena();
                 $comandoSql = "SELECT * FROM tblUsuario WHERE nomUsuario='$usu' AND contrasena='$con'";
                 $objControlConexion = new ControlConexion();
-                $objControlConexion->abrirBd($GLOBALS['serv'], GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
+                $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
                 $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
                 try
                 {
