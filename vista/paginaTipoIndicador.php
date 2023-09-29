@@ -2,7 +2,7 @@
 	include '../controlador/configBd.php';
 	include '../controlador/ControlConexion.php';
 	include '../controlador/ControlTipoIndicador.php';
-	include '../modelo/TipoIndicador.php';
+	include '../modelo/TipoIndicador.php';  
 	$boton = "";
 	$ema = "";
 	$con = "";
@@ -120,8 +120,8 @@
                 <div class="row">
                     <div class="col-sm-8 mt-4 float-left"><h2>Tipo <b>Indicadores</b></h2></div>
                     <div class="col-sm-4">
-                        <button type="button" class="btn btn-outline-info add-new mt-4"><i class="fa fa-plus"></i> Añadir Indicador</button>
-                        <button type="button" class="btn btn-outline-info add-new mt-4"><i class="fa fa-search"></i> Consultar Indicador</button>
+						            <a href="#crudModal" class="btn btn-outline-info mt-4" data-toggle="modal"><i class="fa fa-plus"></i> <span>Administrar Indicadores</span></a>
+
                     </div>
                 </div>
             </div>
@@ -163,6 +163,39 @@
       </div>
     </div>
   </footer><!-- End Footer -->
+
+<div id="crudModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <form action="vistaUsuarios.php" method="post">
+                <div class="modal-header">						
+                  <h4 class="modal-title">Usuario</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">					
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="txtEmail" name="txtEmail" class="form-control" value="<?php echo $ema ?>">
+                  </div>
+                  <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="<?php echo $con ?>">
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" id="btnGuardar" name="bt" class="btn btn-success" value="Guardar">
+                    <input type="submit" id="btnConsultar" name="bt" class="btn btn-success" value="Consultar">
+                    <input type="submit" id="btnModificar" name="bt" class="btn btn-warning" value="Modificar">
+                    <input type="submit" id="btnBorrar" name="bt" class="btn btn-warning" value="Borrar">
+                  </div>				
+                </div>
+                <div class="modal-footer">
+                  <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                  
+                </div>
+			</form>
+		</div>
+	</div>
+</div>
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

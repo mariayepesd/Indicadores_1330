@@ -22,7 +22,7 @@ class RepresenVisual
     }
 
     function getNombre(){
-        $this->nombre;
+        return $this->nombre;
     }
 }
 ?>

@@ -14,6 +14,7 @@
 	if (isset($_POST['bt'])) $boton = $_POST['bt'];//toma del arreglo post el value del bt	
 	if (isset($_POST['txtEmail'])) $ema = $_POST['txtEmail'];
 	if (isset($_POST['txtContrasena'])) $con = $_POST['txtContrasena'];
+  
 	switch ($boton) {
 		case 'Guardar':
 			$objUsuario = new Usuario($ema, $con);
