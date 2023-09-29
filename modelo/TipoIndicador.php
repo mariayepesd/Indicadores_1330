@@ -21,7 +21,7 @@ class TipoIndicador{
     }
 
     function getNombre(){
-        $this->nombre;
+        return $this->nombre;
     }
 }
 ?>
