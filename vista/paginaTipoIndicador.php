@@ -4,37 +4,37 @@
 	include '../controlador/ControlTipoIndicador.php';
 	include '../modelo/TipoIndicador.php';  
 	$boton = "";
-	$ema = "";
-	$con = "";
+	$id = "";
+	$nombre = "";
 	$objControlTipoIndicador = new ControlTipoIndicador(null,null);
 
   $arregloTipoIndicador = $objControlTipoIndicador->listar();
 
   
 	if (isset($_POST['bt'])) $boton = $_POST['bt'];//toma del arreglo post el value del bt	
-	if (isset($_POST['txtEmail'])) $ema = $_POST['txtEmail'];
-	if (isset($_POST['txtContrasena'])) $con = $_POST['txtContrasena'];
+	if (isset($_POST['txtEmail'])) $id = $_POST['txtEmail'];
+	if (isset($_POST['txtContrasena'])) $nombre = $_POST['txtContrasena'];
 	switch ($boton) {
 		case 'Guardar':
-			$objUsuario = new Usuario($ema, $con);
-			$objControlRepresenVisual = new ControlUsuario($objUsuario);
+			$objUsuario = new Usuario($id, $nombre);
+			$objControlTipoIndicador = new ControlUsuario($objUsuario);
 			$objControlRepresenVisual->guardar();
 			header('Location: vistaUsuarios.php');
 			break;
 		case 'Consultar':
-			$objUsuario = new Usuario($ema, "");
+			$objUsuario = new Usuario($id, "");
 			$objControlRepresenVisual = new ControlUsuario($objUsuario);
 			$objUsuario = $objControlRepresenVisual->consultar();
-			$con = $objUsuario->getContrasena();
+			$nombre = $objUsuario->getContrasena();
 			break;
 		case 'Modificar':
-			$objUsuario = new Usuario($ema, $con);
+			$objUsuario = new Usuario($id, $nombre);
 			$objControlRepresenVisual = new ControlUsuario($objUsuario);
 			$objControlRepresenVisual->modificar();
 			header('Location: vistaUsuarios.php');
 			break;
 		case 'Borrar':
-			$objUsuario = new Usuario($ema, "");
+			$objUsuario = new Usuario($id, "");
 			$objControlRepresenVisual = new ControlUsuario($objUsuario);
 			$objControlRepresenVisual->borrar();
 			header('Location: vistaUsuarios.php');
@@ -57,22 +57,22 @@
   <title>Gestión de tipo de indicador</title>
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -117,32 +117,30 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8 mt-4 float-left"><h2>Tipo <b>Indicadores</b></h2></div>
-                    <div class="col-sm-4">
-						            <a href="#crudModal" class="btn btn-outline-info mt-4" data-toggle="modal"><i class="fa fa-plus"></i> <span>Administrar Indicadores</span></a>
-
+                    <div class="col-sm-7 mt-4 float-left"><h2>Tipo <b>Indicadores</b></h2></div>
+                    <div class="col-sm-5" style="text-align: right;">
+						            <a href="#crudModal" class="btn btn-outline-info mt-4" style="width:max-content" data-toggle="modal"><i class="fa fa-cog"></i> Administrar Indicadores</a>
                     </div>
                 </div>
             </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Descripción</th>
-                        <th>Acciones</th>
-
+                        <th style="background-color:lightgray">ID</th>
+                        <th style="width: 50%; background-color:lightgray">Nombre</th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php
+					        for($i = 0; $i < count($arregloTipoIndicador); $i++){
+					      ?>
                     <tr>
-                        <td>John Doe</td>
-                        <td>Administration</td>
-                        <td>
-                            <a class="add" title="Confirmar cambios" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Editar" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Borrar" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
+                        <td><?php echo $arregloTipoIndicador[$i]->getId();?></td>
+                        <td><?php echo $arregloTipoIndicador[$i]->getNombre();?></td>
                     </tr>
+                    <?php
+					        }
+					        ?>
                 </tbody>
             </table>
         </div>
@@ -167,29 +165,25 @@
         <div class="modal-dialog">
             <div class="modal-content">
               <form action="vistaUsuarios.php" method="post">
-                <div class="modal-header">						
-                  <h4 class="modal-title">Usuario</h4>
+                <div class="modal-header " style="background-color:lightgray">						
+                  <h4 class="modal-title">Tipo indicador</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">					
                   <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="txtEmail" name="txtEmail" class="form-control" value="<?php echo $ema ?>">
+                    <label>ID</label>
+                    <input type="text" id="txtId" name="txtId" class="form-control" value="<?php echo $id ?>">
                   </div>
                   <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="<?php echo $con ?>">
+                    <label>Nombre</label>
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="<?php echo $nombre ?>">
                   </div>
                   <div class="form-group">
                     <input type="submit" id="btnGuardar" name="bt" class="btn btn-success" value="Guardar">
-                    <input type="submit" id="btnConsultar" name="bt" class="btn btn-success" value="Consultar">
+                    <input type="submit" id="btnConsultar" name="bt" class="btn btn-primary" value="Consultar">
                     <input type="submit" id="btnModificar" name="bt" class="btn btn-warning" value="Modificar">
-                    <input type="submit" id="btnBorrar" name="bt" class="btn btn-warning" value="Borrar">
+                    <input type="submit" id="btnBorrar" name="bt" class="btn btn-danger" value="Borrar">
                   </div>				
-                </div>
-                <div class="modal-footer">
-                  <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                  
                 </div>
 			</form>
 		</div>
@@ -200,15 +194,15 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="../assets/js/main.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
