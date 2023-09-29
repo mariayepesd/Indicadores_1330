@@ -1,3 +1,50 @@
+<?php
+	include '../controlador/configBd.php';
+	include '../controlador/ControlConexion.php';
+	include '../controlador/ControlRepresenVisual.php';
+	include '../modelo/RepresenVisual.php';
+	$boton = "";
+	$ema = "";
+	$con = "";
+	$objControlRepresenVisual = new ControlRepresenVisual(null,null);
+
+  $arregloRepresenVisual = $objControlRepresenVisual->listar();
+
+	if (isset($_POST['bt'])) $boton = $_POST['bt'];//toma del arreglo post el value del bt	
+	if (isset($_POST['txtEmail'])) $ema = $_POST['txtEmail'];
+	if (isset($_POST['txtContrasena'])) $con = $_POST['txtContrasena'];
+	switch ($boton) {
+		case 'Guardar':
+			$objUsuario = new Usuario($ema, $con);
+			$objControlRepresenVisual = new ControlUsuario($objUsuario);
+			$objControlRepresenVisual->guardar();
+			header('Location: vistaUsuarios.php');
+			break;
+		case 'Consultar':
+			$objUsuario = new Usuario($ema, "");
+			$objControlRepresenVisual = new ControlUsuario($objUsuario);
+			$objUsuario = $objControlRepresenVisual->consultar();
+			$con = $objUsuario->getContrasena();
+			break;
+		case 'Modificar':
+			$objUsuario = new Usuario($ema, $con);
+			$objControlRepresenVisual = new ControlUsuario($objUsuario);
+			$objControlRepresenVisual->modificar();
+			header('Location: vistaUsuarios.php');
+			break;
+		case 'Borrar':
+			$objUsuario = new Usuario($ema, "");
+			$objControlRepresenVisual = new ControlUsuario($objUsuario);
+			$objControlRepresenVisual->borrar();
+			header('Location: vistaUsuarios.php');
+			break;
+		
+		default:
+			# code...
+			break;
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +52,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Gestión de Representante Visual</title>
+  <title>Gestión de Representación Visual</title>
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -37,7 +84,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="paginaInicio.html">Indicadores 1330</a></h1>
+      <h1 class="logo"><a href="paginaInicio.php">Indicadores 1330</a></h1>
 
 
       <nav id="navbar" class="navbar">
@@ -69,9 +116,10 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8 mt-4 float-left"><h2>Representante <b>Visual</b></h2></div>
+                    <div class="col-sm-8 mt-4"><h2>Representación <b>Visual</b></h2></div>
                     <div class="col-sm-4">
-                        <button type="button" class="btn btn-outline-info add-new mt-4"><i class="fa fa-plus"></i> Añadir Representante Visual</button>
+                    <button type="button" class="btn btn-outline-info add-new mt-4"><i class="fa fa-plus"></i> Añadir Representación</button>
+                        <button type="button" class="btn btn-outline-info add-new mt-4"><i class="fa fa-search"></i> Consultar Representación</button>
                     </div>
                 </div>
             </div>
@@ -85,15 +133,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                <?php
+					        for($i = 0; $i < count($arregloRepresenVisual); $i++){
+					      ?>
                     <tr>
-                        <td>John Doe</td>
-                        <td>Administration</td>
+                        <td><?php echo $arregloRepresenVisual[$i]->getId();?></td>
+                        <td><?php echo $arregloRepresenVisual[$i]->getNombre();?></td>
                         <td>
-                            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <button type="button" value="Modificar" class="btn btn-primary btn-sm p-1 edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button>
+                            <button type="button" value="Borrar" class="btn btn-danger btn-sm p-1" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>
                         </td>
                     </tr>
+                    <?php
+					        }
+					        ?>
                 </tbody>
             </table>
         </div>
