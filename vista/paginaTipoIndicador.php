@@ -110,48 +110,44 @@
   </header><!-- End Header -->
 
   
-  <section id="hero" class="mt-5 d-flex align-items-center">
-
-<div class="container-lg">
-    <div class="table-responsive">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-7 mt-4 float-left"><h2>Tipo <b>Indicadores</b></h2></div>
-                    <div class="col-sm-5" style="text-align: right;">
-						            <a href="#crudModal" class="btn btn-outline-info mt-4" style="width:max-content" data-toggle="modal"><i class="fa fa-cog"></i> Administrar Indicadores</a>
-                    </div>
-                </div>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th style="background-color:lightgray">ID</th>
-                        <th style="width: 50%; background-color:lightgray">Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
-					        for($i = 0; $i < count($arregloTipoIndicador); $i++){
-					      ?>
-                    <tr>
-                        <td><?php echo $arregloTipoIndicador[$i]->getId();?></td>
-                        <td><?php echo $arregloTipoIndicador[$i]->getNombre();?></td>
-                    </tr>
-                    <?php
-					        }
-					        ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>     
-
-  </section>
-
+<section id="hero" class="mt-5 d-flex align-items-center">
+  <div class="container-lg">
+      <div class="table-responsive">
+          <div class="table-wrapper">
+              <div class="table-title">
+                  <div class="row">
+                      <div class="col-sm-7 mt-4 float-left"><h2>Tipo <b>Indicadores</b></h2></div>
+                      <div class="col-sm-5" style="text-align: right;">
+                          <a href="#crudModal" class="btn btn-outline-info mt-4" style="width:max-content" data-toggle="modal"><i class="fa fa-cog"></i> Administrar Indicadores</a>
+                      </div>
+                  </div>
+              </div>
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th style="background-color:lightgray">ID</th>
+                          <th style="width: 50%; background-color:lightgray">Nombre</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  <?php
+                    for($i = 0; $i < count($arregloTipoIndicador); $i++){
+                  ?>
+                      <tr>
+                          <td><?php echo $arregloTipoIndicador[$i]->getId();?></td>
+                          <td><?php echo $arregloTipoIndicador[$i]->getNombre();?></td>
+                      </tr>
+                      <?php
+                    }
+                    ?>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>     
+</section>
 
     <div class="container d-md-flex py-4">
-
       <div class="me-md-auto text-center text-md-start">
         <div class="copyright">
           &copy; Copyright <strong><span>Indicadores</span></strong>. Todos los derechos reservados
@@ -184,10 +180,10 @@
                     <input type="submit" id="btnModificar" name="bt" class="btn btn-warning" value="Modificar">
                     <input type="submit" id="btnBorrar" name="bt" class="btn btn-danger" value="Borrar">
                   </div>				
-                </div>
-			</form>
-		</div>
-	</div>
+              </div>
+			  </form>
+		  </div>
+	  </div>
 </div>
 
   <div id="preloader"></div>
