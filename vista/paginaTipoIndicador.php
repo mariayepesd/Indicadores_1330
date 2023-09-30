@@ -3,7 +3,8 @@
 	include '../controlador/ControlConexion.php';
 	include '../controlador/ControlTipoIndicador.php';
 	include '../modelo/TipoIndicador.php';  
-	$boton = "";
+	
+  $boton = "";
 	$id = "";
 	$nombre = "";
 	$objControlTipoIndicador = new ControlTipoIndicador(null,null);
@@ -12,36 +13,36 @@
 
   
 	if (isset($_POST['bt'])) $boton = $_POST['bt'];//toma del arreglo post el value del bt	
-	if (isset($_POST['txtEmail'])) $id = $_POST['txtEmail'];
-	if (isset($_POST['txtContrasena'])) $nombre = $_POST['txtContrasena'];
+	if (isset($_POST['txtId'])) $id = $_POST['txtId'];
+	if (isset($_POST['txtNombre'])) $nombre = $_POST['txtNombre'];
+
 	switch ($boton) {
 		case 'Guardar':
-			$objUsuario = new Usuario($id, $nombre);
-			$objControlTipoIndicador = new ControlUsuario($objUsuario);
-			$objControlRepresenVisual->guardar();
-			header('Location: vistaUsuarios.php');
+			$objTipoIndicador = new TipoIndicador($id, $nombre);
+			$objControlTipoIndicador = new ControlTipoIndicador($objTipoIndicador);
+			$objControlTipoIndicador->guardar();
+			header('Location: paginaTipoIndicador.php');
 			break;
+
 		case 'Consultar':
-			$objUsuario = new Usuario($id, "");
-			$objControlRepresenVisual = new ControlUsuario($objUsuario);
-			$objUsuario = $objControlRepresenVisual->consultar();
-			$nombre = $objUsuario->getContrasena();
+			$objTipoIndicador = new TipoIndicador($id, "");
+			$objControlTipoIndicador = new ControlTipoIndicador($objTipoIndicador);
+			$objTipoIndicador = $objControlTipoIndicador->consultar();
+			$nombre = $objTipoIndicador->getNombre();
 			break;
+
 		case 'Modificar':
-			$objUsuario = new Usuario($id, $nombre);
-			$objControlRepresenVisual = new ControlUsuario($objUsuario);
-			$objControlRepresenVisual->modificar();
-			header('Location: vistaUsuarios.php');
+			$objTipoIndicador = new TipoIndicador($id, $nombre);
+			$objControlTipoIndicador = new ControlTipoIndicador($objTipoIndicador);
+			$objControlTipoIndicador->modificar();
+			header('Location: paginaTipoIndicador.php');
 			break;
+
 		case 'Borrar':
-			$objUsuario = new Usuario($id, "");
-			$objControlRepresenVisual = new ControlUsuario($objUsuario);
-			$objControlRepresenVisual->borrar();
-			header('Location: vistaUsuarios.php');
-			break;
-		
-		default:
-			# code...
+			$objTipoIndicador = new TipoIndicador($id, "");
+			$objControlTipoIndicador = new ControlTipoIndicador($objTipoIndicador);
+			$objControlTipoIndicador->borrar();
+			header('Location: paginaTipoIndicador.php');
 			break;
 	}
 ?>
@@ -138,7 +139,7 @@
                           <td><?php echo $arregloTipoIndicador[$i]->getNombre();?></td>
                       </tr>
                       <?php
-                    }
+                    } 
                     ?>
                   </tbody>
               </table>
@@ -160,7 +161,7 @@
 <div id="crudModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-              <form action="vistaUsuarios.php" method="post">
+              <form action="paginaTipoIndicador.php" method="post">
                 <div class="modal-header " style="background-color:lightgray">						
                   <h4 class="modal-title">Tipo indicador</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

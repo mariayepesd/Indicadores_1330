@@ -148,7 +148,7 @@
                     <div class="modal-content">
                     <form action="paginaTipoActor.php" method="post">
                         <div class="modal-header " style="background-color:lightgray">						
-                        <h4 class="modal-title">Tipo indicador</h4>
+                        <h4 class="modal-title">Tipo Actor</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					

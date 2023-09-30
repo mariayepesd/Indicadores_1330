@@ -44,8 +44,8 @@
         }
 
         function borrar(){
-            $nom= $this->objTipoIndicador->getNombre(); 
-            $comandoSql = "DELETE FROM tipoindicador WHERE nombre = '$nom'";
+            $id= $this->objTipoIndicador->getId(); 
+            $comandoSql = "DELETE FROM tipoindicador WHERE id = '$id'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat'],$GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);
