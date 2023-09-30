@@ -65,8 +65,8 @@
         }
 
         function borrar(){
-            $nom= $this->objRepresenVisual->getNombre(); 
-            $comandoSql = "DELETE FROM represenvisual WHERE nombre = '$nom'";
+            $id= $this->objRepresenVisual->getId(); 
+            $comandoSql = "DELETE FROM represenvisual WHERE id = '$id'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat'],$GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);

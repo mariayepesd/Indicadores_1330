@@ -5,44 +5,44 @@
 	include '../modelo/RepresenVisual.php';
 
 	$boton = "";
-	$ema = "";
-	$con = "";
+	$id = "";
+	$nombre = "";
 	$objControlRepresenVisual = new ControlRepresenVisual(null,null);
 
   $arregloRepresenVisual = $objControlRepresenVisual->listar();
 
 	if (isset($_POST['bt'])) $boton = $_POST['bt'];//toma del arreglo post el value del bt	
-	if (isset($_POST['txtEmail'])) $ema = $_POST['txtEmail'];
-	if (isset($_POST['txtContrasena'])) $con = $_POST['txtContrasena'];
+	if (isset($_POST['txtId'])) $id = $_POST['txtId'];
+	if (isset($_POST['txtNombre'])) $nombre = $_POST['txtNombre'];
   
 	switch ($boton) {
+
 		case 'Guardar':
-			$objUsuario = new Usuario($ema, $con);
-			$objControlRepresenVisual = new ControlUsuario($objUsuario);
+			$objRepresenVisual = new RepresenVisual($id, $nombre);
+			$objControlRepresenVisual = new ControlRepresenVisual($objRepresenVisual);
 			$objControlRepresenVisual->guardar();
-			header('Location: vistaUsuarios.php');
+			header('Location: paginaRepresenVisual.php');
 			break;
+
 		case 'Consultar':
-			$objUsuario = new Usuario($ema, "");
-			$objControlRepresenVisual = new ControlUsuario($objUsuario);
-			$objUsuario = $objControlRepresenVisual->consultar();
-			$con = $objUsuario->getContrasena();
+			$objRepresenVisual = new RepresenVisual($id, "");
+			$objControlRepresenVisual = new ControlRepresenVisual($objRepresenVisual);
+			$objRepresenVisual = $objControlRepresenVisual->consultar();
+			$nombre = $objRepresenVisual->getNombre();
 			break;
+
 		case 'Modificar':
-			$objUsuario = new Usuario($ema, $con);
-			$objControlRepresenVisual = new ControlUsuario($objUsuario);
+			$objRepresenVisual = new RepresenVisual($id, $nombre);
+			$objControlRepresenVisual = new ControlRepresenVisual($objRepresenVisual);
 			$objControlRepresenVisual->modificar();
-			header('Location: vistaUsuarios.php');
+			header('Location: paginaRepresenVisual.php');
 			break;
+
 		case 'Borrar':
-			$objUsuario = new Usuario($ema, "");
-			$objControlRepresenVisual = new ControlUsuario($objUsuario);
+			$objRepresenVisual = new RepresenVisual($id, "");
+			$objControlRepresenVisual = new ControlRepresenVisual($objRepresenVisual);
 			$objControlRepresenVisual->borrar();
-			header('Location: vistaUsuarios.php');
-			break;
-		
-		default:
-			# code...
+			header('Location: paginaRepresenVisual.php');
 			break;
 	}
 ?>
@@ -118,17 +118,17 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8 mt-4"><h2>Representación <b>Visual</b></h2></div>
-                    <div class="col-sm-4">
-                      <a href="#crudModal" class="btn btn-outline-info mt-4" data-toggle="modal"><i class="fa fa-plus"></i> <span>Administrar Indicadores</span></a>
+                    <div class="col-sm-7 mt-4"><h2>Representación <b>Visual</b></h2></div>
+                    <div class="col-sm-5">
+                    <a href="#crudModal" class="btn btn-outline-info mt-4" style="width:max-content" data-toggle="modal"><i class="fa fa-cog"></i> Administrar Representación</a>
                     </div>
                 </div>
             </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th style="width: 50%">Nombre</th>
+                        <th style="background-color:lightgray">ID</th>
+                        <th style="width: 50%;background-color:lightgray">Nombre</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -161,6 +161,35 @@
       </div>
     </div>
   </footer><!-- End Footer -->
+
+  <div id="crudModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <form action="paginaRepresenVisual.php" method="post">
+                <div class="modal-header " style="background-color:lightgray">						
+                  <h4 class="modal-title">Tipo Representación Visual</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">					
+                  <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" id="txtId" name="txtId" class="form-control" value="<?php echo $id ?>">
+                  </div>
+                  <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="<?php echo $nombre ?>">
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" id="btnGuardar" name="bt" class="btn btn-success" value="Guardar">
+                    <input type="submit" id="btnConsultar" name="bt" class="btn btn-primary" value="Consultar">
+                    <input type="submit" id="btnModificar" name="bt" class="btn btn-warning" value="Modificar">
+                    <input type="submit" id="btnBorrar" name="bt" class="btn btn-danger" value="Borrar">
+                  </div>				
+              </div>
+			  </form>
+		  </div>
+	  </div>
+</div>
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
