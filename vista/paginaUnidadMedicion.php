@@ -89,6 +89,8 @@
           <li class="dropdown">
             <a class="nav-link scrollto" href="javascript:void(0)">Módulo Indicadores</a>
             <ul class="dropdown-menu">
+			  <li><a href="paginaGestionIndicadores.php">Gestión Indicadores</a></li>
+			  <hr class="m-0">
               <li><a href="paginaFuente.php">Página Fuente</a></li>
               <li><a href="paginaRepresenVisual.php">Página Representación Visual</a></li>
               <li><a href="paginaSentido.php">Página Sentido</a></li>
@@ -124,7 +126,7 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>ID</th>
+							<th style="width: 50%;">ID</th>
 							<th>Descripción</th>
 						</tr>
 					</thead>
@@ -159,9 +161,6 @@
 		</div>
 	  </footer><!-- End Footer -->
 	
-	  <div id="preloader"></div>
-	  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-	
 	  <!-- Vendor JS Files -->
 	  <script src="assets/vendor/aos/aos.js"></script>
 	  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -182,7 +181,7 @@
 			<div class="modal-content">
 				<form action="paginaUnidadMedicion.php" method="post">
 					<div class="modal-header">						
-						<h4 class="modal-title">Fuente</h4>
+						<h4 class="modal-title">Unidad Medicion</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					

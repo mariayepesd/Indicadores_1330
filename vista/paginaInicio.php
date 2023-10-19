@@ -43,6 +43,8 @@
           <li class="dropdown">
             <a class="nav-link scrollto" href="javascript:void(0)">Módulo Indicadores</a>
             <ul class="dropdown-menu">
+              <li><a href="paginaGestionIndicadores.php">Gestión Indicadores</a></li>
+              <hr class="m-0">
               <li><a href="paginaFuente.php">Página Fuente</a></li>
               <li><a href="paginaRepresenVisual.php">Página Representación Visual</a></li>
               <li><a href="paginaSentido.php">Página Sentido</a></li>

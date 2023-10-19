@@ -76,7 +76,7 @@
 
     <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
-      <h1 class="logo"><a href="paginaTipoActor.php">Indicadores 1330</a></h1>
+      <h1 class="logo"><a href="paginaInicio.php">Indicadores 1330</a></h1>
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
@@ -84,6 +84,8 @@
           <li class="dropdown">
             <a class="nav-link scrollto" href="javascript:void(0)">Módulo Indicadores</a>
             <ul class="dropdown-menu">
+              <li><a href="paginaGestionIndicadores.php">Gestión Indicadores</a></li>
+              <hr class="m-0">
               <li><a href="paginaFuente.php">Página Fuente</a></li>
               <li><a href="paginaRepresenVisual.php">Página Representación Visual</a></li>
               <li><a href="paginaSentido.php">Página Sentido</a></li>
