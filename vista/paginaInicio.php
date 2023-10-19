@@ -40,8 +40,18 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
           <li><a class="nav-link scrollto" href="#legal">Módulo Legal</a></li>
-          <li><a class="nav-link scrollto" href="#indicadores">Módulo Indicadores</a></li>
-          <li><a class="nav-link scrollto " href="#usuarios">Módulo Usuarios</a></li>
+          <li class="dropdown">
+            <a class="nav-link scrollto" href="javascript:void(0)">Módulo Indicadores</a>
+            <ul class="dropdown-menu">
+              <li><a href="paginaFuente.php">Página Fuente</a></li>
+              <li><a href="paginaRepresenVisual.php">Página Representación Visual</a></li>
+              <li><a href="paginaSentido.php">Página Sentido</a></li>
+              <li><a href="paginaTipoActor.php">Página Tipo Actor</a></li>
+              <li><a href="paginaTipoIndicador.php">Página Tipo Indicador</a></li>
+              <li><a href="paginaUnidadMedicion.php">Página Unidad Medición</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#usuarios">Módulo Usuarios</a></li>
           <li><a class="getstarted scrollto" href="#login">Iniciar Sesión</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -100,23 +110,23 @@
           &copy; Copyright <strong><span>Indicadores</span></strong>. Todos los derechos reservados
         </div>
       </div>
-      </div>
     </div>
-  </footer><!-- End Footer -->
+    </div>
+    </footer><!-- End Footer -->
 
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="../assets/vendor/aos/aos.js"></script>
-  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="../assets/vendor/php-email-form/validate.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="../assets/vendor/aos/aos.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="../assets/js/main.js"></script>
+    <!-- Template Main JS File -->
+    <script src="../assets/js/main.js"></script>
 
 </body>
 

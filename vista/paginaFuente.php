@@ -86,16 +86,19 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
           <li><a class="nav-link scrollto" href="#legal">Módulo Legal</a></li>
-          <li><a class="nav-link scrollto" href="#indicadores">Módulo Indicadores</a></li>
-          <li><a class="nav-link scrollto " href="#usuarios">Módulo Usuarios</a></li>
-          <div class="nav-item dropdown">
-				<a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action">Usuario <b class="caret"></b></a>
-				<div class="dropdown-menu">
-					<a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Configuración</a>
-					<div class="divider dropdown-divider"></div>
-					<a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Cerrar Sesión</a>
-				</div>
-			</div>
+          <li class="dropdown">
+            <a class="nav-link scrollto" href="javascript:void(0)">Módulo Indicadores</a>
+            <ul class="dropdown-menu">
+              <li><a href="paginaFuente.php">Página Fuente</a></li>
+              <li><a href="paginaRepresenVisual.php">Página Representación Visual</a></li>
+              <li><a href="paginaSentido.php">Página Sentido</a></li>
+              <li><a href="paginaTipoActor.php">Página Tipo Actor</a></li>
+              <li><a href="paginaTipoIndicador.php">Página Tipo Indicador</a></li>
+              <li><a href="paginaUnidadMedicion.php">Página Unidad Medición</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#usuarios">Módulo Usuarios</a></li>
+          <li><a class="getstarted scrollto" href="#login">Iniciar Sesión</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
