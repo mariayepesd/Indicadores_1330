@@ -17,30 +17,24 @@
         var $fkidnumeral;
         var $fkidparagrafo;
 
-        function __construct ($id, $nombre) {
+        function __construct($id, $codigo, $nombre, $objetivo, $alcance, $formula, $meta /*$fktipoindicador, $fkunidadmedicion,
+                             $fkidsentido, $fkidfrecuencia, $fkidarticulo, $fkidliteral, $fkidnumeral, $fkidparagrafo*/) {
             $this->id = $id;
+            $this->codigo = $codigo;
             $this->nombre = $nombre;
-    }
-
-
-        // function __construct($id, $codigo, $nombre, $objetivo, $alcance, $formula, $fktipoindicador, $fkunidadmedicion,
-        //                     $meta, $fkidsentido, $fkidfrecuencia, $fkidarticulo, $fkidliteral, $fkidnumeral, $fkidparagrafo) {
-        //     $this->id = $id;
-        //     $this->codigo = $codigo;
-        //     $this->nombre = $nombre;
-        //     $this->objetivo = $objetivo;
-        //     $this->alcance = $alcance;
-        //     $this->formula = $formula;
-        //     $this->fktipoindicador = $fktipoindicador;
-        //     $this->fkunidadmedicion = $fkunidadmedicion;
-        //     $this->meta = $meta;
-        //     $this->fkidsentido = $fkidsentido;
-        //     $this->fkidfrecuencia = $fkidfrecuencia;
-        //     $this->fkidarticulo = $fkidarticulo; 
-        //     $this->fkidliteral = $fkidliteral;
-        //     $this->fkidnumeral = $fkidnumeral;
-        //     $this->fkidparagrafo = $fkidparagrafo;
-        // }
+            $this->objetivo = $objetivo;
+            $this->alcance = $alcance;
+            $this->formula = $formula;
+            // $this->fktipoindicador = $fktipoindicador;
+            // $this->fkunidadmedicion = $fkunidadmedicion;
+            $this->meta = $meta;
+            // $this->fkidsentido = $fkidsentido;
+            // $this->fkidfrecuencia = $fkidfrecuencia;
+            // $this->fkidarticulo = $fkidarticulo; 
+            // $this->fkidliteral = $fkidliteral;
+            // $this->fkidnumeral = $fkidnumeral;
+            // $this->fkidparagrafo = $fkidparagrafo;
+        }
 
      
     // Métodos "get" para obtener el valor de las propiedades
