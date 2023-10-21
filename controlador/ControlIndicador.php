@@ -8,6 +8,18 @@
             $this->objIndicador = $objIndicador;
         }
 
+        function guardar() {
+
+            $id = $this->objIndicador->getId(); 
+            $nom = $this->objIndicador->getNombre();
+                
+            $comandoSql = "INSERT INTO indicador(id,nombre) VALUES ('$id', '$nom')";
+            $objControlConexion = new ControlConexion();
+            $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
+            $objControlConexion->ejecutarComandoSql($comandoSql);
+            $objControlConexion->cerrarBd();
+        }
+
         function listarIndicador() {
 
             $comandoSql = "SELECT * FROM indicador";
