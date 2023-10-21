@@ -1,19 +1,19 @@
 <?php
     class represenvisualporindicador{
-        var $fkindicador;
+        var $fkidindicador;
         var $fkidrepresenvisual;
 
-        function __construct($fkindicador, $fkidrepresenvisual){
-            $this->fkindicador = $fkindicador;
+        function __construct($fkidindicador, $fkidrepresenvisual){
+            $this->fkidindicador = $fkidindicador;
             $this->fkidrepresenvisual = $fkidrepresenvisual;
         }
 
-        function setFkIndicador($fkindicador){
-            $this->fkindicador = $fkindicador;
+        function setFkIndicador($fkidindicador){
+            $this->fkidindicador = $fkidindicador;
         }
 
         function getFkIndicador(){
-            return $this->fkindicador;
+            return $this->fkidindicador;
         }
 
         function setfkIdRepresenvisual($fkidrepresenvisual){

@@ -2,21 +2,39 @@
 	include '../controlador/configBd.php';
 	include '../controlador/ControlConexion.php';
 	include '../controlador/ControlUsuario.php';
+	include '../controlador/ControlRol.php';
+	include '../controlador/ControlRolUsuario.php';
 	include '../modelo/Usuario.php';
+	include '../modelo/Rol.php';
+	include '../modelo/RolUsuario.php';
 	$boton = "";
 	$ema = "";
 	$con = "";
+	$listbox1 = array();
 	$objControlUsuario = new ControlUsuario(null);
 	$arregloUsuarios = $objControlUsuario->listar();
-	//var_dump($arregloUsuarios);
+
+	$objControlRol = new ControlRol(null);
+	$arregloRoles = $objControlRol->listar();
+
 	if (isset($_POST['bt'])) $boton = $_POST['bt'];//toma del arreglo post el value del bt	
 	if (isset($_POST['txtEmail'])) $ema = $_POST['txtEmail'];
 	if (isset($_POST['txtContrasena'])) $con = $_POST['txtContrasena'];
+	if (isset($_POST['listbox1'])) $listbox1 = $_POST['listbox1'];
 	switch ($boton) {
 		case 'Guardar':
 			$objUsuario = new Usuario($ema, $con);
 			$objControlUsuario = new ControlUsuario($objUsuario);
 			$objControlUsuario->guardar();
+			if ($listbox1 != ""){
+				for($i = 0; $i < count($listbox1); $i++){
+					$cadenas = explode(";", $listbox1[$i]);
+					$id = $cadenas[0];
+					$objRolUsuario = new RolUsuario($ema, $id);
+					$objControlRolUsuario = new ControlRolUsuario($objRolUsuario);
+					$objControlRolUsuario->guardar();
+				}
+			}
 			header('Location: vistaUsuarios.php');
 			break;
 		case 'Consultar':
@@ -24,6 +42,8 @@
 			$objControlUsuario = new ControlUsuario($objUsuario);
 			$objUsuario = $objControlUsuario->consultar();
 			$con = $objUsuario->getContrasena();
+			$objControlRolUsuario = new ControlRolUsuario(null);
+			$arregloRolesConsulta = $objControlRolUsuario->listarRolesDelUsuario($ema);
 			break;
 		case 'Modificar':
 			$objUsuario = new Usuario($ema, $con);
@@ -32,7 +52,7 @@
 			header('Location: vistaUsuarios.php');
 			break;
 		case 'Borrar':
-			$objUsuario = new Usuario($ema, "");
+			$objUsuario = new Usuario($ema, $con);
 			$objControlUsuario = new ControlUsuario($objUsuario);
 			$objControlUsuario->borrar();
 			header('Location: vistaUsuarios.php');
