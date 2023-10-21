@@ -2,45 +2,50 @@
 include '../controlador/configBd.php';
 include '../controlador/ControlConexion.php';
 include '../controlador/ControlFuente.php';
+include '../controlador/ControlIndicador.php';
 include '../modelo/Fuente.php';
+include '../modelo/Indicador.php';
+include '../modelo/FuenteIndicador.php';
+
 $boton = "";
 $id = "";
-$nom = "";
+
+$listbox1 = array();
+
 $objControlFuente = new ControlFuente(null, null);
+$objControlIndicador = new ControlIndicador(null);
 
 $arregloFuente = $objControlFuente->listar();
+$arregloIndicador = $objControlIndicador->listarIndicador();
+
 
 if (isset($_POST['bt'])) $boton = $_POST['bt']; //toma del arreglo post el value del bt	
-if (isset($_POST['txtId'])) $id = $_POST['txtId'];
-if (isset($_POST['txtNombre'])) $nom = $_POST['txtNombre'];
+if (isset($_POST['selectindicador'])) $id = $_POST['selectindicador'];
+
+if (isset($_POST['listbox1'])) $listbox1 = $_POST['listbox1'];
 switch ($boton) {
+
   case 'Guardar':
+
     $objFuente = new Fuente($id, $nom);
     $objControlFuente = new ControlFuente($objFuente);
     $objControlFuente->guardar();
-    header('Location: paginaFuente.php');
+    if($listbox1 != ""){
+
+      for($i<0; $i<count($listbox1); $i++){
+
+        //$objFuenteIndicador = new FuenteIndicador();
+
+      }
+    }
+    header('Location: paginaGestionIndicadores.php');
     break;
-  case 'Consultar':
-    $objFuente = new Fuente($id, "");
-    $objControlFuente = new ControlFuente($objFuente);
-    $objFuente = $objControlFuente->consultar();
-    $nom = $objFuente->getNombre();
-    break;
-  case 'Modificar':
-    $objFuente = new Fuente($id, $nom);
-    $objControlFuente = new ControlFuente($objFuente);
-    $objControlFuente->modificar();
-    header('Location: paginaFuente.php');
-    break;
+ 
   case 'Borrar':
     $objFuente = new Fuente($id, $nom);
     $objControlFuente = new ControlFuente($objFuente);
     $objControlFuente->borrar();
-    header('Location: paginaFuente.php');
-    break;
-
-  default:
-    # code...
+    header('Location: paginaGestionIndicadores.php');
     break;
 }
 ?>
@@ -137,7 +142,23 @@ switch ($boton) {
 
       <!-- Tab panes -->
       <div class="tab-content">
-        <div class="tab-pane container active" id="home">...</div>
+        <div class="tab-pane container active" id="home">
+        <div class="form-group">
+
+								<label for="combobox1">Todos los Indicadores</label>  
+                  <select class="form-control" id="selectindicador" name="selectindicador">
+                    <?php for ($i = 0; $i < count($arregloIndicador); $i++) { ?>
+                      <option value="<?php echo $arregloIndicador[$i]->getId() . " - " . $arregloIndicador[$i]->getNombre(); ?>">
+                        <?php echo $arregloIndicador[$i]->getId() . " - " . $arregloIndicador[$i]->getNombre(); ?>
+                      </option>
+                    <?php } ?>
+                  </select>
+								<div class="form-group">
+									<input style="font-family:'Open Sans',sans-serif;font-size: 14px; float:right;" type="submit" id="btnGuardar" name="bt" class="btn btn-secondary mt-2 ml-2" value="Guardar">
+									<input style="font-family:'Open Sans',sans-serif;font-size: 14px; float:right;" type="submit" id="btnBorrar" name="bt" class="btn btn-secondary mt-2" value="Borrar">
+								</div>
+							</div>
+        </div>
 
         <div class="tab-pane container fade" id="menu1">...</div>
 
@@ -248,7 +269,10 @@ switch ($boton) {
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="../vista/assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="../vista/assets/js/indicadores.js"></script>
+
+  
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
