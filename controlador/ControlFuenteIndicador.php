@@ -52,5 +52,17 @@
             $objControlConexion->cerrarBd();
             return $arregloFuentes;
         }
+
+
+        function borrar(){
+            $fkIdFuente = $this->objFuenteIndicador->getfkIdFuente(); 
+            $fkIdIndicador = $this->objFuenteIndicador->getfkIdIndicador();
+            $comandoSql = "DELETE FROM fuentesporindicador WHERE fkidfuente = '$fkIdFuente' AND fkidindicador = '$fkIdIndicador'";
+            $objControlConexion = new ControlConexion();
+            $objControlConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat'],$GLOBALS['port']);
+            $objControlConexion->ejecutarComandoSql($comandoSql);
+            $objControlConexion->cerrarBd();
+        }
+
     }
 ?>

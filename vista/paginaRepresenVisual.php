@@ -3,10 +3,13 @@
 	include '../controlador/ControlConexion.php';
 	include '../controlador/ControlRepresenVisual.php';
 	include '../modelo/RepresenVisual.php';
+  include '../modelo/represenvisualporindicador.php';
+  include '../controlador/Controlrepresenvisualporindicador.php';
 
 	$boton = "";
 	$id = "";
 	$nombre = "";
+  $listbox1 = array();
 	$objControlRepresenVisual = new ControlRepresenVisual(null,null);
 
   $arregloRepresenVisual = $objControlRepresenVisual->listar();
@@ -14,13 +17,23 @@
 	if (isset($_POST['bt'])) $boton = $_POST['bt'];//toma del arreglo post el value del bt	
 	if (isset($_POST['txtId'])) $id = $_POST['txtId'];
 	if (isset($_POST['txtNombre'])) $nombre = $_POST['txtNombre'];
+  if (isset($_POST['listbox1'])) $listbox1 = $_POST['listbox1'];
   
 	switch ($boton) {
 
 		case 'Guardar':
-			$objRepresenVisual = new RepresenVisual($id, $nombre);
-			$objControlRepresenVisual = new ControlRepresenVisual($objRepresenVisual);
+			$objUsuario = new RepresenVisual($id, $nombre);
+			$objControlRepresenVisual = new ControlRepresenVisual($objUsuario);
 			$objControlRepresenVisual->guardar();
+			if ($listbox1 != ""){
+				for($i = 0; $i < count($listbox1); $i++){
+					$cadenas = explode(";", $listbox1[$i]);
+					$id = $cadenas[0];
+					$objrepresenvisualporindicador = new represenvisualporindicador($id, $nombre);
+					$objControlrepresenvisualporindicador = new Controlrepresenvisualporindicador($objrepresenvisualporindicador);
+					$objControlrepresenvisualporindicador>guardar();
+				}
+			}
 			header('Location: paginaRepresenVisual.php');
 			break;
 
@@ -29,6 +42,8 @@
 			$objControlRepresenVisual = new ControlRepresenVisual($objRepresenVisual);
 			$objRepresenVisual = $objControlRepresenVisual->consultar();
 			$nombre = $objRepresenVisual->getNombre();
+      $objControlrepresenvisualporindicador = new Controlrepresenvisualporindicador(null);
+			$arregloRepresenVisualConsulta = $objControlrepresenvisualporindicador->listarRepresenVisualPorIndicador($nombre);
 			break;
 
 		case 'Modificar':
