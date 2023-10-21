@@ -1,50 +1,35 @@
 <?php
     class ResultadoIndicador {
 
-        var $id;
-        var $resultado;
-        var $fechacalculo;
-        var $fkIndicador;
-
-        function __construct($id, $resultado, $fechacalculo, $fkIndicador) {
-
-            $this->id = $id;
-            $this->resultado = $resultado;
-            $this->fechacalculo = $fechacalculo;
-            $this->fkIndicador = $fkIndicador;
-
-        }
-
-        public function getId() {
-            return $this->id;
-        }
+            var $fkIdresultado;
+            var $fkIdIndicador;
     
-        public function getResultado() {
-            return $this->resultado;
-        }
+            function __construct($fkIdresultado, $fkIdIndicador) {
     
-        public function getFechacalculo() {
-            return $this->fechacalculo;
-        }
+                $this->fkIdresultado = $fkIdresultado;
+                $this->fkIdIndicador = $fkIdIndicador;
+            }
     
-        public function getFkIndicador() {
-            return $this->fkIndicador;
-        }
+            function setfkIdresultado($fkIdresultado) {
+                
+                $this->fkIdresultado = $fkIdresultado;
     
-        public function setId($id) {
-            $this->id = $id;
-        }
+            }
     
-        public function setResultado($resultado) {
-            $this->resultado = $resultado;
-        }
+            function getfkIdresultado() {
     
-        public function setFechacalculo($fechacalculo) {
-            $this->fechacalculo = $fechacalculo;
-        }
+                return $this->fkIdresultado;
+            }
     
-        public function setFkIndicador($fkIndicador) {
-            $this->fkIndicador = $fkIndicador;
-        }
+            function setfkIdIndicador($fkIdIndicador) {
+    
+                $this->fkIdIndicador = $fkIdIndicador;
+            }
+    
+            function getfkIdIndicador() {
+                
+                return $this->fkIdIndicador;
+            }
+        
     }
 ?>

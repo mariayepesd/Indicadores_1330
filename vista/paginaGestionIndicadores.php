@@ -1,48 +1,66 @@
 <?php
 include '../controlador/configBd.php';
 include '../controlador/ControlConexion.php';
-include '../controlador/ControlFuente.php';
+
 include '../controlador/ControlIndicador.php';
+
+include '../controlador/ControlFuente.php';
+include '../controlador/ControlFuenteIndicador.php';
+
+include '../controlador/ControlVariable.php';
+include '../controlador/ControlVariableIndicador.php';
+
+include '../controlador/ControlResultadoIndicador.php';
+include '../controlador/ControlResultado.php';
+
 include '../modelo/Fuente.php';
+include '../modelo/Variable.php';
+include '../modelo/Resultado.php';
 include '../modelo/Indicador.php';
 include '../modelo/FuenteIndicador.php';
 
 $boton = "";
 $idInd = "";
 
+
 $listbox1 = array();
 
-$objControlFuente = new ControlFuente(null, null);
+$objControlFuente = new ControlFuente(null);
 $objControlIndicador = new ControlIndicador(null);
+$objControlVariable = new ControlVariable(null);
+$objControlResultado = new ControlResultado(null);
 
 $arregloFuente = $objControlFuente->listar();
 $arregloIndicador = $objControlIndicador->listarIndicador();
+$arregloVariable = $objControlVariable->listar();
+$arregloResultado = $objControlResultado->listar();
 
 
 if (isset($_POST['bt'])) $boton = $_POST['bt']; //toma del arreglo post el value del bt	
 if (isset($_POST['selectindicador'])) $idInd = $_POST['selectindicador'];
 
 if (isset($_POST['listbox1'])) $listbox1 = $_POST['listbox1'];
-var_dump($listbox1);
+
 
 switch ($boton) {
 
   case 'Guardar':
 
+    var_dump($idInd);
     $objIndicador = new Indicador($idInd, '');
 		$objControlIndicador = new ControlIndicador($objIndicador);
 		$objControlIndicador->guardar();
 
-    if($listbox1 != ""){
+    if($listbox1 != "") {
 
       for($i<0; $i<count($listbox1); $i++){
 
         $string = explode(" - ",$listbox1[$i]);
         $idf = $string[0];
-        var_dump($idf);
         $objFuenteIndicador = new FuenteIndicador($idf,$idInd);
         $objControlFuenteIndicador = new ControlFuenteIndicador($objFuenteIndicador);
         $objControlFuenteIndicador->guardar();
+
       }
     
     }
@@ -197,8 +215,6 @@ switch ($boton) {
           <div class="form-group float-right">
             <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox1', 'listbox1')">Agregar Item</button>
             <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox1')">Remover Item</button>
-            <input style="font-family:'Open Sans',sans-serif;font-size: 14px; float:right;" type="submit" id="btnGuardar" name="bt" class="btn btn-secondary ml-1" value="Guardar">
-
           </div>
 
         </div>
@@ -210,9 +226,9 @@ switch ($boton) {
             <label for="combobox1">Todas las variables</label>
             <select class="form-control" id="combobox1" name="combobox1">
 
-              <?php for ($i = 0; $i < count($arregloFuente); $i++) { ?>
-                <option value="<?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>">
-                  <?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>
+              <?php for ($i = 0; $i < count($arregloVariable); $i++) { ?>
+                <option value="<?php echo $arregloVariable[$i]->getId()?>">
+                  <?php echo $arregloVariable[$i]->getId() . " - " . $arregloVariable[$i]->getNombre(); ?>
                 </option>
               <?php } ?>
 
@@ -234,14 +250,14 @@ switch ($boton) {
       <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
             <label for="combobox1">Todos los resultados</label>
             <select class="form-control" id="combobox1" name="combobox1">
-              <?php for ($i = 0; $i < count($arregloFuente); $i++) { ?>
-                <option value="<?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>">
-                  <?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>
+              <?php for ($i = 0; $i < count($arregloResultado); $i++) { ?>
+                <option value="<?php echo $arregloResultado[$i]->getId()?>">
+                  <?php echo $arregloResultado[$i]->getId() . " - " . $arregloResultado[$i]->getResultado(); ?>
                 </option>
               <?php } ?>
             </select>
             <br>
-            <label for="listbox1">Fuentes por indicador</label>
+            <label for="listbox1">Resultados por indicador</label>
             <select multiple class="form-control" id="listbox1" name="listbox1[]">
 
             </select>
