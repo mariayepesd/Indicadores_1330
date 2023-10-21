@@ -1,48 +1,48 @@
 <?php
-	include '../controlador/configBd.php';
-	include '../controlador/ControlConexion.php';
-	include '../controlador/ControlFuente.php';
-	include '../modelo/Fuente.php';
-	$boton = "";
-	$id = "";
-	$nom = "";
-	$objControlFuente = new ControlFuente(null,null);
+include '../controlador/configBd.php';
+include '../controlador/ControlConexion.php';
+include '../controlador/ControlFuente.php';
+include '../modelo/Fuente.php';
+$boton = "";
+$id = "";
+$nom = "";
+$objControlFuente = new ControlFuente(null, null);
 
-    $arregloFuente = $objControlFuente->listar();
+$arregloFuente = $objControlFuente->listar();
 
-	if (isset($_POST['bt'])) $boton = $_POST['bt'];//toma del arreglo post el value del bt	
-	if (isset($_POST['txtId'])) $id = $_POST['txtId'];
-	if (isset($_POST['txtNombre'])) $nom = $_POST['txtNombre'];
-	switch ($boton) {
-		case 'Guardar':
-			$objFuente = new Fuente($id, $nom);
-			$objControlFuente = new ControlFuente($objFuente);
-			$objControlFuente->guardar();
-			header('Location: paginaFuente.php');
-			break;
-		case 'Consultar':
-			$objFuente = new Fuente($id, "");
-			$objControlFuente = new ControlFuente($objFuente);
-			$objFuente = $objControlFuente->consultar();
-			$nom = $objFuente->getNombre();
-			break;
-		case 'Modificar':
-			$objFuente = new Fuente($id, $nom);
-			$objControlFuente = new ControlFuente($objFuente);
-			$objControlFuente->modificar();
-			header('Location: paginaFuente.php');
-			break;
-		case 'Borrar':
-			$objFuente = new Fuente($id, $nom);
-			$objControlFuente = new ControlFuente($objFuente);
-			$objControlFuente->borrar();
-			header('Location: paginaFuente.php');
-			break;
-		
-		default:
-			# code...
-			break;
-	}
+if (isset($_POST['bt'])) $boton = $_POST['bt']; //toma del arreglo post el value del bt	
+if (isset($_POST['txtId'])) $id = $_POST['txtId'];
+if (isset($_POST['txtNombre'])) $nom = $_POST['txtNombre'];
+switch ($boton) {
+  case 'Guardar':
+    $objFuente = new Fuente($id, $nom);
+    $objControlFuente = new ControlFuente($objFuente);
+    $objControlFuente->guardar();
+    header('Location: paginaFuente.php');
+    break;
+  case 'Consultar':
+    $objFuente = new Fuente($id, "");
+    $objControlFuente = new ControlFuente($objFuente);
+    $objFuente = $objControlFuente->consultar();
+    $nom = $objFuente->getNombre();
+    break;
+  case 'Modificar':
+    $objFuente = new Fuente($id, $nom);
+    $objControlFuente = new ControlFuente($objFuente);
+    $objControlFuente->modificar();
+    header('Location: paginaFuente.php');
+    break;
+  case 'Borrar':
+    $objFuente = new Fuente($id, $nom);
+    $objControlFuente = new ControlFuente($objFuente);
+    $objControlFuente->borrar();
+    header('Location: paginaFuente.php');
+    break;
+
+  default:
+    # code...
+    break;
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,14 +56,14 @@
 
   <!-- Favicons -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap Simple Data Table</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <title>Bootstrap Simple Data Table</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
@@ -96,7 +96,7 @@
               <li><a href="paginaSentido.php">Página Sentido</a></li>
               <li><a href="paginaTipoActor.php">Página Tipo Actor</a></li>
               <li><a href="paginaTipoIndicador.php">Página Tipo Indicador</a></li>
-              <li><a href="paginaUnidadMedicion.php">Página Unidad Medición</a></li>            
+              <li><a href="paginaUnidadMedicion.php">Página Unidad Medición</a></li>
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#usuarios">Módulo Usuarios</a></li>
@@ -108,60 +108,134 @@
     </div>
   </header><!-- End Header -->
 
-  
+
   <section id="hero" class="mt-5 d-flex align-items-center">
-					
-   <div class="container-lg mt-5">
 
-        <!-- Nav tabs -->
-          <ul class="nav nav-tabs w-100">
-            <li class="nav-item">
-              <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;"
-              class="nav-link font-weight-bold active" data-toggle="tab" href="#home">Datos Indicador</a>
-            </li>
-            <li class="nav-item">
-              <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;"
-              class="nav-link font-weight-bold" data-toggle="tab" href="#menu1">Representación / Indicador</a>
-            </li>
-            <li class="nav-item">
-              <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;"
-              class="nav-link font-weight-bold" data-toggle="tab" href="#menu2">Responsable / indicador</a>
-            </li>
-            <li class="nav-item">
-              <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;"
-              class="nav-link font-weight-bold" data-toggle="tab" href="#menu2">Fuente / indicador</a>
-            </li>
-            <li class="nav-item">
-              <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;"
-              class="nav-link font-weight-bold" data-toggle="tab" href="#menu2">Variable / indicador</a>
-            </li>
-            <li class="nav-item">
-              <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;"
-              class="nav-link font-weight-bold" data-toggle="tab" href="#menu2">Resultado / indicador</a>
-            </li>
-          </ul>
+    <div class="container-lg mt-5">
 
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div class="tab-pane container active" id="home">...</div>
-            <div class="tab-pane container fade" id="menu1">...</div>
-            <div class="tab-pane container fade" id="menu2">...</div>
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs w-100">
+        <li class="nav-item">
+          <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold active" data-toggle="tab" href="#home">Datos Indicador</a>
+        </li>
+        <li class="nav-item">
+          <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold" data-toggle="tab" href="#menu1">Representación / Indicador</a>
+        </li>
+        <li class="nav-item">
+          <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold" data-toggle="tab" href="#menu2">Responsable / indicador</a>
+        </li>
+        <li class="nav-item">
+          <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold" data-toggle="tab" href="#fuente">Fuente / indicador</a>
+        </li>
+        <li class="nav-item">
+          <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold" data-toggle="tab" href="#variable">Variable / indicador</a>
+        </li>
+        <li class="nav-item">
+          <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold" data-toggle="tab" href="#resultado">Resultado / indicador</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane container active" id="home">...</div>
+
+        <div class="tab-pane container fade" id="menu1">...</div>
+
+        <div class="tab-pane container fade" id="menu2">...</div>
+
+        <div class="tab-pane container fade" id="fuente">
+          
+
+          <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+            
+            <label for="combobox1">Todas las fuentes</label>  
+            <select class="form-control" id="combobox1" name="combobox1">
+              <?php for ($i = 0; $i < count($arregloFuente); $i++) { ?>
+                <option value="<?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>">
+                  <?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>
+                </option>
+              <?php } ?>
+            </select>
+
+            <br>
+            <label for="listbox1">Fuentes por indicador</label>
+            <select multiple class="form-control" id="listbox1" name="listbox1[]">
+            </select>
+
+          </div>
+          
+          <div class="form-group float-right">
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox1', 'listbox1')">Agregar Item</button>
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox1')">Remover Item</button>
           </div>
 
-   </div>
-									
+        </div>
+
+
+        <div class="tab-pane container fade" id="variable">
+
+        <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+            <label for="combobox1">Todas las variables</label>
+            <select class="form-control" id="combobox1" name="combobox1">
+
+              <?php for ($i = 0; $i < count($arregloFuente); $i++) { ?>
+                <option value="<?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>">
+                  <?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>
+                </option>
+              <?php } ?>
+
+            </select>
+            <br>
+            <label for="listbox1">Fuentes por indicador</label>
+            <select multiple class="form-control" id="listbox1" name="listbox1[]">
+
+            </select>
+          </div>
+          <div class="form-group float-right">
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox1', 'listbox1')">Agregar Item</button>
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox1')">Remover Item</button>
+          </div>
+        </div>
+
+      <div class="tab-pane container fade" id="resultado">
+
+      <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+            <label for="combobox1">Todos los resultados</label>
+            <select class="form-control" id="combobox1" name="combobox1">
+              <?php for ($i = 0; $i < count($arregloFuente); $i++) { ?>
+                <option value="<?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>">
+                  <?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>
+                </option>
+              <?php } ?>
+            </select>
+            <br>
+            <label for="listbox1">Fuentes por indicador</label>
+            <select multiple class="form-control" id="listbox1" name="listbox1[]">
+
+            </select>
+          </div>
+          <div class="form-group float-right">
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox1', 'listbox1')">Agregar Item</button>
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox1')">Remover Item</button>
+          </div>
+
+      </div>
+    </div>
+
+    </div>
+
   </section>
 
 
-    <div class="container d-md-flex py-4">
+  <div class="container d-md-flex py-4">
 
-      <div class="me-md-auto text-center text-md-start">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Indicadores</span></strong>. Todos los derechos reservados
-        </div>
-      </div>
+    <div class="me-md-auto text-center text-md-start">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Indicadores</span></strong>. Todos los derechos reservados
       </div>
     </div>
+  </div>
+  </div>
   </footer><!-- End Footer -->
 
 
@@ -174,7 +248,7 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="../vista/assets/js/main.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

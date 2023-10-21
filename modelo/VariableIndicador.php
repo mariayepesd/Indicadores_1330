@@ -1,27 +1,44 @@
 <?php
-    class RolUsuario{
-        var $fkEmail;
-        var $fkIdRol;
+    class VariableIndicador {
 
-        function __construct($fkEmail, $fkIdRol){
-            $this->fkEmail = $fkEmail;
-            $this->fkIdRol = $fkIdRol;
+        var $id;
+        var $fkIdVariable;
+        var $fkIdIndicador;
+        var $dato;
+        var $fkEmailUsuario;
+        var $fechaDato;
+
+        function __construct ($id, $fkIdVariable, $fkIdIndicador, $dato,
+        $fkEmailUsuario, $fechaDato ) {
+
+            $this->id = $id;
+            $this->fkIdVariable = $fkIdVariable;
+            $this->fkIdIndicador = $fkIdIndicador;
+            $this->dato = $dato;
+            $this->fkEmailUsuario = $fkEmailUsuario;
+            $this->fechaDato = $fechaDato;
+
         }
 
-        function setFkEmail($fkEmail){
-            $this->fkEmail = $fkEmail;
+        function setFkIdVariable($fkIdVariable) {
+            
+            $this->fkIdVariable = $fkIdVariable;
+
         }
 
-        function getFkEmail(){
-            return $this->fkEmail;
+        function getFkIdVariable() {
+
+            return $this->fkIdVariable;
         }
 
-        function setfkIdRol($fkIdRol){
-            $this->fkIdRol = $fkIdRol;
+        function setFkIdIndicador($fkIdIndicador) {
+
+            $this->fkIdIndicador = $fkIdIndicador;
         }
 
-        function getFkIdRol(){
-            return $this->fkIdRol;
+        function getFkIdIndicador(){
+            
+            return $this->fkIdIndicador;
         }
     }
 ?>

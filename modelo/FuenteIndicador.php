@@ -1,27 +1,34 @@
 <?php
-    class RolUsuario{
-        var $fkEmail;
-        var $fkIdRol;
+    class FuenteIndicador{
 
-        function __construct($fkEmail, $fkIdRol){
-            $this->fkEmail = $fkEmail;
-            $this->fkIdRol = $fkIdRol;
+        var $fkIdFuente;
+        var $fkIdIndicador;
+
+        function __construct($fkIdFuente, $fkIdIndicador) {
+
+            $this->fkIdFuente = $fkIdFuente;
+            $this->fkIdIndicador = $fkIdIndicador;
         }
 
-        function setFkEmail($fkEmail){
-            $this->fkEmail = $fkEmail;
+        function setfkIdFuente($fkIdFuente) {
+            
+            $this->fkIdFuente = $fkIdFuente;
+
         }
 
-        function getFkEmail(){
-            return $this->fkEmail;
+        function getfkIdFuente() {
+
+            return $this->fkIdFuente;
         }
 
-        function setfkIdRol($fkIdRol){
-            $this->fkIdRol = $fkIdRol;
+        function setfkIdIndicador($fkIdIndicador) {
+
+            $this->fkIdIndicador = $fkIdIndicador;
         }
 
-        function getFkIdRol(){
-            return $this->fkIdRol;
+        function getfkIdIndicador() {
+            
+            return $this->fkIdIndicador;
         }
     }
 ?>
