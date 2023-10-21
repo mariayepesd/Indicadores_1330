@@ -7,11 +7,12 @@ class Variable {
         var $fechaCreacion;
         var $fkEmailUsuario;
 
-        public function __construct($id, $nombre) {
+        public function __construct($id, $nombre,$fechaCreacion,$fkEmailUsuario) {
             
             $this->id = $id;
             $this->nombre = $nombre;
-
+            $this->fechaCreacion = $fechaCreacion;
+            $this->fkEmailUsuario = $fkEmailUsuario;
         }
 
 
