@@ -29,11 +29,13 @@ $objControlFuente = new ControlFuente(null);
 $objControlIndicador = new ControlIndicador(null);
 $objControlVariable = new ControlVariable(null);
 $objControlResultado = new ControlResultado(null);
+$objControlRepresenVisual = new ControlRepresenVisual(null)
 
 $arregloFuente = $objControlFuente->listar();
 $arregloIndicador = $objControlIndicador->listarIndicador();
 $arregloVariable = $objControlVariable->listar();
 $arregloResultado = $objControlResultado->listar();
+$arregloRepresenVisual = $objControlRepresenVisual->listar();
 
 
 if (isset($_POST['bt'])) $boton = $_POST['bt']; //toma del arreglo post el value del bt	
@@ -187,7 +189,33 @@ switch ($boton) {
         </div>
         </form>
 
-        <div class="tab-pane container fade" id="menu1">...</div>
+        <div class="tab-pane container fade" id="Representacion">
+          
+
+          <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+            
+            <label for="combobox1">Todas las fuentes</label>  
+            <select class="form-control" id="combobox1" name="combobox1">
+              <?php for ($i = 0; $i < count($arregloRepresenVisual); $i++) { ?>
+                <option value="<?php echo $arregloRepresenVisual[$i]->getId() . " - " . $arregloRepresenVisual[$i]->getNombre(); ?>">
+                  <?php echo $arregloRepresenVisual[$i]->getId() . " - " . $arregloRepresenVisual[$i]->getNombre(); ?>
+                </option>
+              <?php } ?>
+            </select>
+
+            <br>
+            <label for="listbox1">Representaciones por indicador</label>
+            <select multiple class="form-control" id="listbox1" name="listbox1[]">
+            </select>
+
+          </div>
+          
+          <div class="form-group float-right">
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox1', 'listbox1')">Agregar Item</button>
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox1')">Remover Item</button>
+          </div>
+
+        </div>
 
         <div class="tab-pane container fade" id="menu2">...</div>
 
