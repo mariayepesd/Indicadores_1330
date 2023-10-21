@@ -36,7 +36,20 @@
                     $objIndicador = new Indicador(
 
                         $row['id'],
+                        $row['codigo'],
                         $row['nombre'],
+                        $row['objetivo'],
+                        $row['alcance'],
+                        $row['formula'],
+                        // $row['fktipoindicador'],
+                        // $row['fkunidadmedicion'],
+                        $row['meta'],
+                        // $row['fkidsentido'],
+                        // $row['fkidfrecuencia'],
+                        // $row['fkidarticulo'],
+                        // $row['fkidliteral'],
+                        // $row['fkidnumeral'],
+                        // $row['fkidparagrafo']
 
                     );
 
