@@ -4,6 +4,8 @@ include '../controlador/ControlConexion.php';
 
 include '../controlador/ControlIndicador.php';
 
+include '../controlador/ControlRepresenVisual.php';
+
 include '../controlador/ControlFuente.php';
 include '../controlador/ControlFuenteIndicador.php';
 
@@ -18,6 +20,7 @@ include '../modelo/Variable.php';
 include '../modelo/Resultado.php';
 include '../modelo/Indicador.php';
 include '../modelo/FuenteIndicador.php';
+include '../modelo/RepresenVisual.php';
 
 $boton = "";
 $idInd = "";
@@ -29,7 +32,7 @@ $objControlFuente = new ControlFuente(null);
 $objControlIndicador = new ControlIndicador(null);
 $objControlVariable = new ControlVariable(null);
 $objControlResultado = new ControlResultado(null);
-$objControlRepresenVisual = new ControlRepresenVisual(null)
+$objControlRepresenVisual = new ControlRepresenVisual(null);
 
 $arregloFuente = $objControlFuente->listar();
 $arregloIndicador = $objControlIndicador->listarIndicador();
@@ -109,7 +112,7 @@ switch ($boton) {
 <body>
 
   <!-- ======= Header ======= -->
-  <!-- <header id="header" class="fixed-top">
+  <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
       <h1 class="logo"><a href="paginaInicio.php">Indicadores 1330</a></h1>
@@ -139,7 +142,7 @@ switch ($boton) {
       </nav>
 
     </div>
-  </header> -->
+  </header>
 
 
   <section id="hero" class="mt-5 d-flex align-items-center">
@@ -152,7 +155,7 @@ switch ($boton) {
           <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold active" data-toggle="tab" href="#home">Datos Indicador</a>
         </li>
         <li class="nav-item">
-          <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold" data-toggle="tab" href="#menu1">Representación / Indicador</a>
+          <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold" data-toggle="tab" href="#representacion">Representación / Indicador</a>
         </li>
         <li class="nav-item">
           <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold" data-toggle="tab" href="#menu2">Responsable / indicador</a>
@@ -189,12 +192,12 @@ switch ($boton) {
         </div>
         </form>
 
-        <div class="tab-pane container fade" id="Representacion">
+        <div class="tab-pane container fade" id="representacion">
           
 
           <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
             
-            <label for="combobox1">Todas las fuentes</label>  
+            <label for="combobox1">Todas las representaciones</label>  
             <select class="form-control" id="combobox1" name="combobox1">
               <?php for ($i = 0; $i < count($arregloRepresenVisual); $i++) { ?>
                 <option value="<?php echo $arregloRepresenVisual[$i]->getId() . " - " . $arregloRepresenVisual[$i]->getNombre(); ?>">
