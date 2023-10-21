@@ -8,7 +8,7 @@ include '../modelo/Indicador.php';
 include '../modelo/FuenteIndicador.php';
 
 $boton = "";
-$id = "";
+$idInd = "";
 
 $listbox1 = array();
 
@@ -20,23 +20,31 @@ $arregloIndicador = $objControlIndicador->listarIndicador();
 
 
 if (isset($_POST['bt'])) $boton = $_POST['bt']; //toma del arreglo post el value del bt	
-if (isset($_POST['selectindicador'])) $id = $_POST['selectindicador'];
+if (isset($_POST['selectindicador'])) $idInd = $_POST['selectindicador'];
 
 if (isset($_POST['listbox1'])) $listbox1 = $_POST['listbox1'];
+var_dump($listbox1);
+
 switch ($boton) {
 
   case 'Guardar':
 
-    $objFuente = new Fuente($id, $nom);
-    $objControlFuente = new ControlFuente($objFuente);
-    $objControlFuente->guardar();
+    $objIndicador = new Indicador($idInd, '');
+		$objControlIndicador = new ControlIndicador($objIndicador);
+		$objControlIndicador->guardar();
+
     if($listbox1 != ""){
 
       for($i<0; $i<count($listbox1); $i++){
 
-        //$objFuenteIndicador = new FuenteIndicador();
-
+        $string = explode(" - ",$listbox1[$i]);
+        $idf = $string[0];
+        var_dump($idf);
+        $objFuenteIndicador = new FuenteIndicador($idf,$idInd);
+        $objControlFuenteIndicador = new ControlFuenteIndicador($objFuenteIndicador);
+        $objControlFuenteIndicador->guardar();
       }
+    
     }
     header('Location: paginaGestionIndicadores.php');
     break;
@@ -81,7 +89,7 @@ switch ($boton) {
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
+  <!-- <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
       <h1 class="logo"><a href="paginaInicio.php">Indicadores 1330</a></h1>
@@ -108,10 +116,10 @@ switch ($boton) {
           <li><a class="getstarted scrollto" href="#login">Iniciar Sesión</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>
 
     </div>
-  </header><!-- End Header -->
+  </header> -->
 
 
   <section id="hero" class="mt-5 d-flex align-items-center">
@@ -144,11 +152,11 @@ switch ($boton) {
       <div class="tab-content">
         <div class="tab-pane container active" id="home">
         <div class="form-group">
-
-								<label for="combobox1">Todos los Indicadores</label>  
+          <form method="post">
+								<label for="combobox1">Todos los indicadores</label>  
                   <select class="form-control" id="selectindicador" name="selectindicador">
                     <?php for ($i = 0; $i < count($arregloIndicador); $i++) { ?>
-                      <option value="<?php echo $arregloIndicador[$i]->getId() . " - " . $arregloIndicador[$i]->getNombre(); ?>">
+                      <option value="<?php echo $arregloIndicador[$i]->getId()?>">
                         <?php echo $arregloIndicador[$i]->getId() . " - " . $arregloIndicador[$i]->getNombre(); ?>
                       </option>
                     <?php } ?>
@@ -159,6 +167,7 @@ switch ($boton) {
 								</div>
 							</div>
         </div>
+        </form>
 
         <div class="tab-pane container fade" id="menu1">...</div>
 
@@ -188,6 +197,8 @@ switch ($boton) {
           <div class="form-group float-right">
             <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox1', 'listbox1')">Agregar Item</button>
             <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox1')">Remover Item</button>
+            <input style="font-family:'Open Sans',sans-serif;font-size: 14px; float:right;" type="submit" id="btnGuardar" name="bt" class="btn btn-secondary ml-1" value="Guardar">
+
           </div>
 
         </div>
@@ -207,7 +218,7 @@ switch ($boton) {
 
             </select>
             <br>
-            <label for="listbox1">Fuentes por indicador</label>
+            <label for="listbox1">Variables por indicador</label>
             <select multiple class="form-control" id="listbox1" name="listbox1[]">
 
             </select>
