@@ -42,10 +42,13 @@ $objControlResultado = new ControlResultado(null);
 $objControlRepresenVisual = new ControlRepresenVisual(null);
 
 $arregloFuente = $objControlFuente->listar();
-$arregloIndicador = $objControlIndicador->listarIndicador();
+$arregloIndicador = $objControlIndicador->listar();
 $arregloRepresenVisual = $objControlRepresenvisual->listar();
 $arregloVariable = $objControlVariable->listar();
 $arregloResultado = $objControlResultado->listar();
+
+var_dump($arregloIndicador);
+
 
 if (isset($_POST['bt'])) $boton = $_POST['bt']; //toma del arreglo post el value del bt	
 if (isset($_POST['selectindicador'])) $id = $_POST['selectindicador'];
@@ -141,7 +144,9 @@ switch ($boton) {
       </nav><!-- .navbar -->
 
     </div>
-  </header><!-- End Header -->
+  </header>  
+  
+  <!-- End Header -->
 
 
   <section id="hero" class="mt-5 d-flex align-items-center">
@@ -157,7 +162,7 @@ switch ($boton) {
                             </div>
                         </div>
                     </div>
-                    <table class="table table-striped table-hover table-bordered">
+                    <table class="table table-striped table-responsive table-hover table-bordered h-100">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -166,21 +171,34 @@ switch ($boton) {
                                 <th>Objetivo</th>
                                 <th>Alcance</th>
                                 <th>Fórmula</th>
+                                <th>Tipo Indicador</th>
+                                <th>Unidad Medición</th>
                                 <th>Meta</th>
+                                <th>Sentido</th>
+                                <th>Artículo</th>
+                                <th>Literal</th>
+                                <th>Parágrafo</th>
 
                             </tr>
                         </thead>
                         <?php
 					        for($i = 0; $i < count($arregloIndicador); $i++){
-					      ?>
+					            ?>
                     <tr>
-                        <td><?php echo $arregloIndicador[$i]->getId();?></td>
+                        <td><?php echo $arregloIndicador[$i]->getIdIndicador();?></td> <!--REVISAR-->
                         <td><?php echo $arregloIndicador[$i]->getCodigo();?></td>
-                        <td><?php echo $arregloIndicador[$i]->getNombre();?></td>
+                        <td><?php echo $arregloIndicador[$i]->getNombre();?></td> <!--REVISAR-->
                         <td><?php echo $arregloIndicador[$i]->getObjetivo();?></td>
                         <td><?php echo $arregloIndicador[$i]->getAlcance();?></td>
                         <td><?php echo $arregloIndicador[$i]->getFormula();?></td>
-                        <td><?php echo $arregloIndicador[$i]->getMeta();?></td>
+                        <td><?php echo $arregloIndicador[$i]->getFkTipoIndicador();?></td>
+                        <td><?php echo $arregloIndicador[$i]->getFkUnidadMedicion();?></td>
+                        <td><?php echo $arregloIndicador[$i]->getMeta();?></td> <!--REVISAR-->
+                        <td><?php echo $arregloIndicador[$i]->getFkIdSentido();?></td>
+                                                                                <!--AGREGAR FRECUENCIA-->
+                        <td><?php echo $arregloIndicador[$i]->getFkIdArticulo();?></td>
+                        <td><?php echo $arregloIndicador[$i]->getFkIdLiteral();?></td>
+                        <td><?php echo $arregloIndicador[$i]->getFkIdParagrafo();?></td>
                     </tr>
                     <?php
 					        }

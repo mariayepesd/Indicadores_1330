@@ -1,7 +1,7 @@
 <?php
     class Indicador{
 
-        var $id;
+        var $id_indicador;
         var $codigo;
         var $nombre;
         var $objetivo;
@@ -17,30 +17,30 @@
         var $fkidnumeral;
         var $fkidparagrafo;
 
-        function __construct($id, $codigo, $nombre, $objetivo, $alcance, $formula, $meta /*$fktipoindicador, $fkunidadmedicion,
-                             $fkidsentido, $fkidfrecuencia, $fkidarticulo, $fkidliteral, $fkidnumeral, $fkidparagrafo*/) {
-            $this->id = $id;
+        function __construct($id, $codigo, $nombre, $objetivo, $alcance, $formula, $meta, $fktipoindicador, $fkunidadmedicion,
+                             $fkidsentido, /*$fkidfrecuencia*/ $fkidarticulo, $fkidliteral, $fkidnumeral, $fkidparagrafo) {
+            $this->id_indicador = $id;
             $this->codigo = $codigo;
             $this->nombre = $nombre;
             $this->objetivo = $objetivo;
             $this->alcance = $alcance;
             $this->formula = $formula;
-            // $this->fktipoindicador = $fktipoindicador;
-            // $this->fkunidadmedicion = $fkunidadmedicion;
+            $this->fktipoindicador = $fktipoindicador;
+            $this->fkunidadmedicion = $fkunidadmedicion;
             $this->meta = $meta;
-            // $this->fkidsentido = $fkidsentido;
-            // $this->fkidfrecuencia = $fkidfrecuencia;
-            // $this->fkidarticulo = $fkidarticulo; 
-            // $this->fkidliteral = $fkidliteral;
-            // $this->fkidnumeral = $fkidnumeral;
-            // $this->fkidparagrafo = $fkidparagrafo;
+            $this->fkidsentido = $fkidsentido;
+            //$this->fkidfrecuencia = $fkidfrecuencia;
+            $this->fkidarticulo = $fkidarticulo; 
+            $this->fkidliteral = $fkidliteral;
+            $this->fkidnumeral = $fkidnumeral;
+            $this->fkidparagrafo = $fkidparagrafo;
         }
 
      
     // Métodos "get" para obtener el valor de las propiedades
     
-    public function getId() {
-        return $this->id;
+    public function getIdIndicador() {
+        return $this->id_indicador;
     }
 
     public function getCodigo() {
@@ -101,8 +101,8 @@
 
     // Métodos "set" para establecer el valor de las propiedades
 
-    public function setId($id) {
-        $this->id = $id;
+    public function setIdIndicador($id) {
+        $this->id_indicador = $id;
     }
 
     public function setCodigo($codigo) {
