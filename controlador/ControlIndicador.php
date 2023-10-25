@@ -20,45 +20,49 @@
             $objControlConexion->cerrarBd();
         }
 
-        function listarIndicador() {
-
-            $comandoSql = "SELECT * FROM indicador";
+        function listar() {
+            $comandoSql = "SELECT *, t.nombre, u.descripcion, s.nombre, a.nombre, l.descripcion, n.descripcion, p.descripcion FROM indicador i 
+            INNER JOIN tipoindicador t ON i.fkidtipoindicador = t.id 
+            INNER JOIN unidadmedicion u ON i.fkidunidadmedicion = u.id 
+            INNER JOIN sentido s ON i.fkidsentido = s.id 
+            INNER JOIN articulo a ON i.fkidarticulo = a.id 
+            INNER JOIN literal l ON i.fkidliteral = l.id 
+            INNER JOIN numeral n ON i.fkidnumeral = n.id 
+            INNER JOIN paragrafo p ON i.fkidparagrafo = p.id;";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
         
-            $arregloIndicador = array();
-        
             if (mysqli_num_rows($recordSet) > 0) {
 
-                while ($row = $recordSet->fetch_assoc()) {
+                $arregloIndicador = array();
+                $i = 0;
 
-                    $objIndicador = new Indicador(
+                while($row = $recordSet->fetch_array(MYSQLI_BOTH)) {
 
-                        $row['id'],
-                        $row['codigo'],
-                        $row['nombre'],
-                        $row['objetivo'],
-                        $row['alcance'],
-                        $row['formula'],
-                        // $row['fktipoindicador'],
-                        // $row['fkunidadmedicion'],
-                        $row['meta'],
-                        // $row['fkidsentido'],
-                        // $row['fkidfrecuencia'],
-                        // $row['fkidarticulo'],
-                        // $row['fkidliteral'],
-                        // $row['fkidnumeral'],
-                        // $row['fkidparagrafo']
+                    $objIndicador = new Indicador("","","","","","","",0,0,0,0,0,0,0);
 
-                    );
-
-                    $arregloIndicador[] = $objIndicador;
+                    $objIndicador->setIdIndicador($row['id']);
+                    $objIndicador->setCodigo($row['codigo']);
+                    $objIndicador->setNombre($row['nombre']);
+                    $objIndicador->setObjetivo($row['objetivo']);
+                    $objIndicador->setAlcance($row['alcance']);
+                    $objIndicador->setFormula($row['formula']);
+                    $objIndicador->setFkTipoIndicador($row['fkidtipoindicador']);
+                    $objIndicador->setFkUnidadMedicion($row['fkidunidadmedicion']);
+                    $objIndicador->setFkIdSentido($row['fkidsentido']);
+                    $objIndicador->setFkIdArticulo($row['fkidarticulo']);
+                    $objIndicador->setFkIdLiteral($row['fkidliteral']);
+                    $objIndicador->setFkIdNumeral($row['fkidnumeral']);
+                    $objIndicador->setFkIdParagrafo($row['fkidparagrafo']);
+                    $arregloIndicador[$i] = $objIndicador;
+                    $i++;
                 }
             }
         
+        
             $objControlConexion->cerrarBd();
-            
+        
             return $arregloIndicador;
         }
     }
