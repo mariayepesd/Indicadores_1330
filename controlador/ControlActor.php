@@ -51,7 +51,7 @@
                 $this->objActor->setNombre($row['nombre']);
             }
             $objControlConexion->cerrarBd();
-            return $this->objFuente;
+            return $this->objActor;
         }
 
         function modificar(){
@@ -59,7 +59,7 @@
             $nom = $this->objActor->getNombre();
             $fkidtipoactor = $this->objActor->getFkidtipoactor();
             
-            $comandoSql = "UPDATE actor SET nombre='$nombre' WHERE id = '$id', fkidtipoactor= '$fkidtipoactor' ";
+            $comandoSql = "UPDATE actor SET nombre='$nom' WHERE id = '$id', fkidtipoactor= '$fkidtipoactor' ";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);
@@ -67,7 +67,7 @@
         }
 
         function borrar(){
-            $nom= $this->objFuente->getNombre(); 
+            $nom= $this->objActor->getNombre(); 
             $comandoSql = "DELETE FROM fuente WHERE nombre = '$nom'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat'],$GLOBALS['port']);
