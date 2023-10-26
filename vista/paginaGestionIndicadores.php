@@ -3,6 +3,13 @@ include '../controlador/configBd.php';
 include '../controlador/ControlConexion.php';
 
 include '../controlador/ControlIndicador.php';
+include '../controlador/ControlMedicion.php';
+include '../controlador/ControlTipoIndicador.php';
+include '../controlador/ControlSentido.php';
+
+include '../controlador/ControlArticulo.php'; 
+include '../controlador/ControlLiteral.php'; 
+include '../controlador/ControlParagrafo.php'; 
 
 include '../controlador/ControlRepresenVisual.php';
 
@@ -22,9 +29,15 @@ include '../modelo/Fuente.php';
 include '../modelo/Variable.php';
 include '../modelo/Resultado.php';
 include '../modelo/Indicador.php';
+include '../modelo/TipoIndicador.php';
 include '../modelo/FuenteIndicador.php';
+include '../modelo/UnidadMedicion.php';
 include '../modelo/RepresenVisual.php';
 include '../modelo/represenvisualporindicador.php';
+include '../modelo/Sentido.php';
+include '../modelo/Articulo.php'; 
+include '../modelo/Literal.php'; 
+include '../modelo/Paragrafo.php'; 
 
 $boton = "";
 $id = "";
@@ -39,16 +52,25 @@ $objControlIndicador = new ControlIndicador(null);
 $objControlRepresenvisual = new ControlRepresenvisual(null);
 $objControlVariable = new ControlVariable(null);
 $objControlResultado = new ControlResultado(null);
+$objControlUnidadMedicion = new ControlMedicion(null);
 $objControlRepresenVisual = new ControlRepresenVisual(null);
+$objControlTipoIndicador = new ControlTipoIndicador(null);
+$objControlSentido = new ControlSentido(null);
+$objControlArticulo = new ControlArticulo(null);
+$objControlLiteral = new ControlLiteral(null);
+$objControlParagrafo = new ControlParagrafo(null);
 
 $arregloFuente = $objControlFuente->listar();
 $arregloIndicador = $objControlIndicador->listar();
 $arregloRepresenVisual = $objControlRepresenvisual->listar();
 $arregloVariable = $objControlVariable->listar();
 $arregloResultado = $objControlResultado->listar();
-
-var_dump($arregloIndicador);
-
+$arregloTipoIndicador = $objControlTipoIndicador->listar();
+$arregloUnidadMedicion = $objControlUnidadMedicion->listar();
+$arregloSentido = $objControlSentido->listar();
+$arregloArticulo = $objControlArticulo->listar();
+$arregloLiteral = $objControlLiteral->listar();
+$arregloParagrafo = $objControlParagrafo->listar();
 
 if (isset($_POST['bt'])) $boton = $_POST['bt']; //toma del arreglo post el value del bt	
 if (isset($_POST['selectindicador'])) $id = $_POST['selectindicador'];
@@ -90,11 +112,11 @@ switch ($boton) {
   <meta charset="utf-8">
   <!-- <meta content="width=device-width, initial-scale=1.0" name="viewport"> -->
 
-  <title>Gestión de Fuente</title>
+  <title>Gestión de Indicadores</title>
 
   <!-- Favicons -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Bootstrap Simple Data Table</title>
+  <title>Gestión de Indicadores</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -153,7 +175,7 @@ switch ($boton) {
 
   <div class="container-xl">
             <div class="table-responsive">
-                <div class="table-wrapper">
+                <div class="table-wrapper w-100">
                     <div class="table-title">
                         <div class="row">
                         <div class="col-sm-6 mt-3 float-left" style="text-align: left"><h2><b>Gestión de Indicadores</b></h2></div>
@@ -162,7 +184,7 @@ switch ($boton) {
                             </div>
                         </div>
                     </div>
-                    <table class="table table-striped table-responsive table-hover table-bordered h-100">
+                    <table class="table table-striped table-responsive table-hover table-bordered h-100 text-center">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -175,6 +197,7 @@ switch ($boton) {
                                 <th>Unidad Medición</th>
                                 <th>Meta</th>
                                 <th>Sentido</th>
+                                <th>Frecuencia</th>
                                 <th>Artículo</th>
                                 <th>Literal</th>
                                 <th>Parágrafo</th>
@@ -185,17 +208,17 @@ switch ($boton) {
 					        for($i = 0; $i < count($arregloIndicador); $i++){
 					            ?>
                     <tr>
-                        <td><?php echo $arregloIndicador[$i]->getIdIndicador();?></td> <!--REVISAR-->
+                        <td><?php echo $arregloIndicador[$i]->getIdIndicador();?></td> 
                         <td><?php echo $arregloIndicador[$i]->getCodigo();?></td>
-                        <td><?php echo $arregloIndicador[$i]->getNombre();?></td> <!--REVISAR-->
+                        <td><?php echo $arregloIndicador[$i]->getNombre();?></td> 
                         <td><?php echo $arregloIndicador[$i]->getObjetivo();?></td>
                         <td><?php echo $arregloIndicador[$i]->getAlcance();?></td>
                         <td><?php echo $arregloIndicador[$i]->getFormula();?></td>
                         <td><?php echo $arregloIndicador[$i]->getFkTipoIndicador();?></td>
                         <td><?php echo $arregloIndicador[$i]->getFkUnidadMedicion();?></td>
-                        <td><?php echo $arregloIndicador[$i]->getMeta();?></td> <!--REVISAR-->
+                        <td><?php echo $arregloIndicador[$i]->getMeta();?></td>
                         <td><?php echo $arregloIndicador[$i]->getFkIdSentido();?></td>
-                                                                                <!--AGREGAR FRECUENCIA-->
+                        <td><?php echo $arregloIndicador[$i]->getFkIdFrecuencia();?>                                       
                         <td><?php echo $arregloIndicador[$i]->getFkIdArticulo();?></td>
                         <td><?php echo $arregloIndicador[$i]->getFkIdLiteral();?></td>
                         <td><?php echo $arregloIndicador[$i]->getFkIdParagrafo();?></td>
@@ -218,7 +241,7 @@ switch ($boton) {
       <div class="modal-content">
         <form action="paginaGestionIndicadores.php" method="post">
           <div class="modal-header">
-            <h4 style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 16px;" class="modal-title text-secondary font-weight-bold">Gestión Indicadores</h4>
+            
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">
@@ -246,14 +269,99 @@ switch ($boton) {
               <div class="tab-content">
                 <div id="home" class="container tab-pane active"><br>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
-                    <label>Email</label>
+                    <label>Id</label>
                     <input type="email" id="txtEmail" name="txtEmail" class="form-control" value="">
                   </div>
-                  <div class="form-group">
-                    <label>Contraseña</label>
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Código</label>
                     <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
                   </div>
-                  <div class="form-group">
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                  </div>
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Objetivo</label>
+                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                  </div>
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Alcance</label>
+                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                  </div>
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Fórmula</label>
+                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                  </div>
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Tipo de Indicador</label>
+                    <select class="form-control" id="combobox1" name="combobox1">
+                        <?php for ($i = 0; $i < count($arregloTipoIndicador); $i++) { ?>
+                          <option value="<?php echo $arregloTipoIndicador[$i]->getId(); ?>">
+                            <?php echo $arregloTipoIndicador[$i]->getNombre(); ?>
+                          </option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Unidad de Medición</label>
+                    <select class="form-control" id="combobox1" name="combobox1">
+                        <?php for ($i = 0; $i < count($arregloUnidadMedicion); $i++) { ?>
+                          <option value="<?php echo $arregloUnidadMedicion[$i]->getId(); ?>">
+                            <?php echo $arregloUnidadMedicion[$i]->getDescripcion(); ?>
+                          </option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Meta</label>
+                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                  </div>
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Sentido</label>
+                    <select class="form-control" id="combobox1" name="combobox1">
+                        <?php for ($i = 0; $i < count($arregloSentido); $i++) { ?>
+                          <option value="<?php echo $arregloSentido[$i]->getId(); ?>">
+                            <?php echo $arregloSentido[$i]->getNombre(); ?>
+                          </option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Frecuencia</label>
+                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                  </div>
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Artículo</label>
+                    <select class="form-control" id="combobox1" name="combobox1">
+                        <?php for ($i = 0; $i < count($arregloArticulo); $i++) { ?>
+                          <option value="<?php echo $arregloArticulo[$i]->getId(); ?>">
+                            <?php echo $arregloArticulo[$i]->getNombre(); ?>
+                          </option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Literal</label>
+                    <select class="form-control" id="combobox1" name="combobox1">
+                        <?php for ($i = 0; $i < count($arregloLiteral); $i++) { ?>
+                          <option value="<?php echo $arregloLiteral[$i]->getId(); ?>">
+                            <?php echo $arregloLiteral[$i]->getDescripcion(); ?>
+                          </option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Parágrafo</label>
+                    <select class="form-control" id="combobox1" name="combobox1">
+                        <?php for ($i = 0; $i < count($arregloParagrafo); $i++) { ?>
+                          <option value="<?php echo $arregloParagrafo[$i]->getId(); ?>">
+                            <?php echo $arregloParagrafo[$i]->getDescripcion(); ?>
+                          </option>
+                        <?php } ?>
+                      </select>
+                  </div>
+
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <input style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="submit" id="btnGuardar" name="bt" class="btn btn-primary" value="Guardar">
                     <input style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="submit" id="btnConsultar" name="bt" class="btn btn-secondary" value="Consultar">
                     <input style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="submit" id="btnModificar" name="bt" class="btn btn-secondary" value="Modificar">
