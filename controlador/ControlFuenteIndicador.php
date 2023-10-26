@@ -23,7 +23,7 @@
 
         }
 
-        function listarFuentesPorIndicador($fkIdIndicador) {
+        function listarFuentesPorIndicador($fkIdFuente) {
 
             $comandoSql = "SELECT fuentesporindicador.fkidindicador, indicador.nombre 
             FROM fuentesporindicador INNER JOIN indicador ON fuentesporindicador.fkidindicador = indicador.id

@@ -17,9 +17,10 @@
                 $arregloActor = array();
                 $i = 0;
                 while($row = $recordSet->fetch_array(MYSQLI_BOTH)){
-                    $objActor = new fuente("","");
+                    $objActor = new Actor("","","");
                     $objActor->setId($row['id']);
                     $objActor->setNombre($row['nombre']);
+                    $objActor->setFkidtipoactor($row['fkidtipoactor']);
                     $arregloActor[$i] = $objActor;
                     $i++;
                 }
@@ -51,14 +52,13 @@
                 $this->objActor->setNombre($row['nombre']);
             }
             $objControlConexion->cerrarBd();
-            return $this->objFuente;
+            return $this->objActor;
         }
 
         function modificar(){
             $id = $this->objActor->getId(); 
             $nom = $this->objActor->getNombre();
-            $fkidtipoactor = $this->objActor->getFkidtipoactor();
-            
+            $fkidtipoactor = $this->objActor->getFkidtipoactor();            
             $comandoSql = "UPDATE actor SET nombre='$nombre' WHERE id = '$id', fkidtipoactor= '$fkidtipoactor' ";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
