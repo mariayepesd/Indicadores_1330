@@ -60,7 +60,7 @@
             $nom = $this->objActor->getNombre();
             $fkidtipoactor = $this->objActor->getFkidtipoactor();
             
-            $comandoSql = "UPDATE actor SET nombre='$nombre' WHERE id = '$id', fkidtipoactor= '$fkidtipoactor' ";
+            $comandoSql = "UPDATE actor SET nombre='$nom' WHERE id = '$id', fkidtipoactor= '$fkidtipoactor' ";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);
