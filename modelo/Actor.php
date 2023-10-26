@@ -1,5 +1,5 @@
 <?php
-class Fuente{
+class Actor{
     var $id;
     var $nombre;
     var $fkidtipoactor;
