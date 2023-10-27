@@ -275,13 +275,16 @@ switch ($boton) {
                 <li class="nav-item">
                   <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold" data-toggle="tab" href="#variable">Variable / indicador</a>
                 </li>
+                <li class="nav-item">
+                  <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold" data-toggle="tab" href="#resultado">Resultado / indicador</a>
+                </li>
               </ul>
               <!-- Tab panes -->
               <div class="tab-content">
                 <div id="home" class="container tab-pane active"><br>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Id</label>
-                    <input type="email" id="txtEmail" name="txtEmail" class="form-control" value="">
+                    <input type="text" id="txtId" name="txtEmail" class="form-control" value="">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Código</label>
@@ -493,6 +496,32 @@ switch ($boton) {
             <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox3')">Remover Item</button>
           </div>
         </div>
+
+        <div class="tab-pane container fade" id="resultado">
+
+        <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+            <label for="combobox6">Todos los Resultados</label>
+            <select class="form-control" id="combobox6" name="combobox6">
+
+              <?php for ($i = 0; $i < count($arregloResultado); $i++) { ?>
+                <option value="<?php echo $arregloResultado[$i]->getId() . " - " . $arregloResultado[$i]->getResultado(); ?>">
+                  <?php echo $arregloResultado[$i]->getId() . " - " . $arregloResultado[$i]->getResultado(); ?>
+                </option>
+              <?php } ?>
+
+            </select>
+            <br>
+            <label for="listbox6">Resultados por indicador</label>
+            <select multiple class="form-control" id="listbox6" name="listbox6[]">
+
+            </select>
+          </div>
+          <div class="form-group float-right">
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox6', 'listbox6')">Agregar Item</button>
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox6')">Remover Item</button>
+          </div>
+        </div>
+
 
 
             
