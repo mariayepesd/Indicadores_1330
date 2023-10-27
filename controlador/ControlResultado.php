@@ -10,8 +10,8 @@ class ControlResultado{
 
     function guardar(){
 
-        $nom = $this->objResultado->getNombre(); //Asigna a la variable nom el nombre que está dentro del objeto.
-        $comando = "insert into resultadoindicador(nombre) values('$nom')"; //Cadena de caracteres donde se construye el comando Sql.
+        $res = $this->objResultado->getResultado(); //Asigna a la variable nom el nombre que está dentro del objeto.
+        $comando = "insert into resultado(resultado) values($res)"; //Cadena de caracteres donde se construye el comando Sql.
         $objControlConexion = new ControlConexion(); //Se instancia la clase controlConexion.
         $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']); //Se invoca el método abrirBd.
         $objControlConexion->ejecutarComandoSql($comando); //Se invoca el método ejecutarComandoSql.
@@ -20,7 +20,7 @@ class ControlResultado{
 
     function listar(){
 
-        $comandoSql = "SELECT * FROM resultadoindicador";
+        $comandoSql = "SELECT * FROM resultado";
         $objControlConexion = new ControlConexion();
         $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
         $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
