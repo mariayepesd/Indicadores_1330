@@ -77,9 +77,9 @@
 
         function borrar() {
 
-            $val= $this->objFrecuencia->getValor(); 
+            $id= $this->objFrecuencia->getId(); 
 
-            $comandoSql = "DELETE FROM frecuencia WHERE valor = '$val'";
+            $comandoSql = "DELETE FROM frecuencia WHERE id = '$id'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat'],$GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);
