@@ -6,7 +6,7 @@ include '../controlador/ControlIndicador.php';
 include '../controlador/ControlMedicion.php';
 include '../controlador/ControlTipoIndicador.php';
 include '../controlador/ControlSentido.php';
-
+include '../controlador/ControlFrecuencia.php'; 
 include '../controlador/ControlArticulo.php'; 
 include '../controlador/ControlLiteral.php'; 
 include '../controlador/ControlParagrafo.php'; 
@@ -29,6 +29,7 @@ include '../controlador/ControlResponsablesPorIndicador.php';
 
 
 include '../modelo/Fuente.php';
+include '../modelo/Frecuencia.php';
 include '../modelo/Variable.php';
 include '../modelo/Resultado.php';
 include '../modelo/Indicador.php';
@@ -53,6 +54,7 @@ $listbox4 = array();
 $listbox5 = array();
 
 $objControlFuente = new ControlFuente(null, null);
+$objControlFrecuencia = new ControlFrecuencia(null, null);
 $objControlIndicador = new ControlIndicador(null);
 $objControlRepresenvisual = new ControlRepresenvisual(null);
 $objControlVariable = new ControlVariable(null);
@@ -78,6 +80,7 @@ $arregloArticulo = $objControlArticulo->listar();
 $arregloLiteral = $objControlLiteral->listar();
 $arregloParagrafo = $objControlParagrafo->listar();
 $arregloActor = $objControlActor->listar();
+$arregloFrecuencia = $objControlFrecuencia->listar();
 
 if (isset($_POST['bt'])) $boton = $_POST['bt']; //toma del arreglo post el value del bt	
 if (isset($_POST['selectindicador'])) $id = $_POST['selectindicador'];
@@ -336,7 +339,13 @@ switch ($boton) {
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Frecuencia</label>
-                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                    <select class="form-control" id="combobox1" name="combobox1">
+                        <?php for ($i = 0; $i < count($arregloFrecuencia); $i++) { ?>
+                          <option value="<?php echo $arregloFrecuencia[$i]->getId(); ?>">
+                            <?php echo $arregloFrecuencia[$i]->getValor(); ?>
+                          </option>
+                        <?php } ?>
+                      </select>
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Artículo</label>
