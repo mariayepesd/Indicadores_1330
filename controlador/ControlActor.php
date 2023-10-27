@@ -34,7 +34,7 @@
             $nombre = $this->objActor->getNombre();
             $fkidtipoactor = $this->objActor->getFkidtipoactor();
                 
-            $comandoSql = "INSERT INTO actor(id,nombre,fkidtipoactor) VALUES ('$id', '$nombre,', '$fkidtipoactor')";
+            $comandoSql = "INSERT INTO actor(id,nombre,fkidtipoactor) VALUES ('$id', '$nombre', '$fkidtipoactor')";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);
@@ -50,6 +50,8 @@
             $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
             if ($row = $recordSet->fetch_array(MYSQLI_BOTH)){
                 $this->objActor->setNombre($row['nombre']);
+                $this->objActor->setFkidtipoactor($row['fkidtipoactor']);
+
             }
             $objControlConexion->cerrarBd();
             return $this->objActor;
@@ -59,8 +61,8 @@
             $id = $this->objActor->getId(); 
             $nom = $this->objActor->getNombre();
             $fkidtipoactor = $this->objActor->getFkidtipoactor();
-            
-            $comandoSql = "UPDATE actor SET nombre='$nom' WHERE id = '$id', fkidtipoactor= '$fkidtipoactor' ";
+
+            $comandoSql = "UPDATE actor SET nombre='$nom', fkidtipoactor='$fkidtipoactor' WHERE id = '$id'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);
@@ -68,8 +70,8 @@
         }
 
         function borrar(){
-            $nom= $this->objActor->getNombre(); 
-            $comandoSql = "DELETE FROM fuente WHERE nombre = '$nom'";
+            $id= $this->objActor->getId(); 
+            $comandoSql = "DELETE FROM actor WHERE id = '$id'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat'],$GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);

@@ -15,32 +15,34 @@
 	if (isset($_POST['bt'])) $boton = $_POST['bt'];
 	if (isset($_POST['txtId'])) $id = $_POST['txtId'];
 	if (isset($_POST['txtNombre'])) $nombre = $_POST['txtNombre'];
-    if (isset($_POST['txtIdTipoActor'])) $nombre = $_POST['txtIdTipoActor'];
+    if (isset($_POST['txtIdTipoActor'])) $fkidtipoactor = $_POST['txtIdTipoActor'];
   
 	switch ($boton) {
 		case 'Guardar':
-			$objActor = new Actor($id, $nombre,$fkidtipoactor);
-			$objControlActor = new ControlTipoActor($objActor);
+			$objActor = new Actor($id, $nombre, $fkidtipoactor);
+			$objControlActor = new ControlActor($objActor);
 			$objControlActor->guardar();
 			header('Location: paginaActor.php');
 			break;
 		case 'Consultar':
-			$objActor = new TipoActor($id, "");
+			$objActor = new Actor($id, $nombre, $fkidtipoactor);
 			$objControlActor = new ControlActor($objActor);
 			$objActor = $objControlActor->consultar();
 			$nombre = $objActor->getNombre();
+            $fkidtipoactor = $objActor->getFkidtipoactor();
 			break;
 		case 'Modificar':
-			$objActor = new Actor($id, $nombre);
-			$objControlActor = new ControlTipoActor($objActor);
+			$objActor = new Actor($id, $nombre, $fkidtipoactor);
+			$objControlActor = new ControlActor($objActor);
 			$objControlActor->modificar();
-			header('Location: paginaTipoActor.php');
+			header('Location: paginaActor.php');
 			break;
 		case 'Borrar':
-			$objActor = new Actor($id, $nombre);
+            // TODO BORRAR POR ID O POR NOMBRE O POR TODOS, DISCUTIR
+			$objActor = new Actor($id, null,null);
 			$objControlActor = new ControlActor($objActor);
 			$objControlActor->borrar();
-			header('Location: paginaTipoActor.php');
+			header('Location: paginaActor.php');
 			break;
 		
 		default:
@@ -54,7 +56,7 @@
     
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap Simple Data Table</title>
+<title>Actores</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -110,9 +112,9 @@
                 <div class="table-wrapper">
                     <div class="table-title">
                         <div class="row">
-                        <div class="col-sm-6 mt-3 float-left" style="text-align: left"><h2>Tipo <b>Actores</b></h2></div>
+                        <div class="col-sm-6 mt-3 float-left" style="text-align: left"><h2><b>Actores</b></h2></div>
                             <div class="col-sm-6" style="text-align: right;">
-						            <a href="#crudModal" class="btn btn-outline-info mt-4" style="width:max-content" data-toggle="modal"><i class="fa fa-cog"></i> Administrar Tipos de actores</a>
+						            <a href="#crudModal" class="btn btn-outline-info mt-4" style="width:max-content" data-toggle="modal"><i class="fa fa-cog"></i> Administrar actores</a>
                             </div>
                         </div>
                     </div>
@@ -121,6 +123,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th style="width: 50%;">Nombre</th>
+                                <th style="width: 25%;">ID Tipo Actor</th>
                             </tr>
                         </thead>
                         <?php
@@ -135,9 +138,6 @@
 					        }
 					?>
                     </table>
-                        <div class="search-box">
-                                <input type="text" class="form-control" placeholder="Buscar" style="width:max-content">
-                        </div>
                 </div>
             </div>  
         </div>   
@@ -154,9 +154,9 @@
         <div id="crudModal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                    <form action="paginaTipoActor.php" method="post">
+                    <form action="paginaActor.php" method="post">
                         <div class="modal-header " style="background-color:lightgray">						
-                        <h4 class="modal-title">Tipo Actor</h4>
+                        <h4 class="modal-title">Actor</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
@@ -169,7 +169,7 @@
                             <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="<?php echo $nombre ?>">
                         </div>
                         <div class="form-group">
-                            <label>idTipoActor</label>
+                            <label>ID Tipo Actor</label>
                             <input type="text" id="txtIdTipoActor" name="txtIdTipoActor" class="form-control" value="<?php echo $fkidtipoactor ?>">
                         </div>
                         <div class="form-group">
