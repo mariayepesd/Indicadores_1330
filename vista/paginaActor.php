@@ -8,7 +8,7 @@
 	$id = "";
 	$nombre = "";
     $fkidtipoactor="";
-	$objControlActor = new ControlActor(null,null,null);
+	$objControlActor = new ControlActor(null);
 
     $arregloActor = $objControlActor->listar();
 
