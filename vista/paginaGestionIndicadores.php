@@ -288,31 +288,31 @@ switch ($boton) {
                 <div id="home" class="container tab-pane active"><br>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Id</label>
-                    <input type="email" id="txtEmail" name="txtEmail" class="form-control" value="">
+                    <input type="text" id="txtId" name="txtId" class="form-control" value="">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Código</label>
-                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                    <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" value="">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Nombre</label>
-                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Objetivo</label>
-                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                    <input type="text" id="txtObjetivo" name="txtObjetivo" class="form-control" value="">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Alcance</label>
-                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                    <input type="text" id="txtAlcance" name="txtAlcance" class="form-control" value="">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Fórmula</label>
-                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                    <input type="text" id="txtFormula" name="txtFormula" class="form-control" value="">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Tipo de Indicador</label>
-                    <select class="form-control" id="combobox1" name="combobox1">
+                    <select class="form-control" id="tipoindicador" name="tipoindicador">
                         <?php for ($i = 0; $i < count($arregloTipoIndicador); $i++) { ?>
                           <option value="<?php echo $arregloTipoIndicador[$i]->getId(); ?>">
                             <?php echo $arregloTipoIndicador[$i]->getNombre(); ?>
@@ -322,7 +322,7 @@ switch ($boton) {
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Unidad de Medición</label>
-                    <select class="form-control" id="combobox1" name="combobox1">
+                    <select class="form-control" id="unidadmedicion" name="unidadmedicion">
                         <?php for ($i = 0; $i < count($arregloUnidadMedicion); $i++) { ?>
                           <option value="<?php echo $arregloUnidadMedicion[$i]->getId(); ?>">
                             <?php echo $arregloUnidadMedicion[$i]->getDescripcion(); ?>
@@ -332,11 +332,11 @@ switch ($boton) {
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Meta</label>
-                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                    <input type="text" id="txtMeta" name="txtMeta" class="form-control" value="">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Sentido</label>
-                    <select class="form-control" id="combobox1" name="combobox1">
+                    <select class="form-control" id="sentido" name="sentido">
                         <?php for ($i = 0; $i < count($arregloSentido); $i++) { ?>
                           <option value="<?php echo $arregloSentido[$i]->getId(); ?>">
                             <?php echo $arregloSentido[$i]->getNombre(); ?>
@@ -346,11 +346,11 @@ switch ($boton) {
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Frecuencia</label>
-                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
+                    <input type="text" id="txtFrecuencia" name="txtFrecuencia" class="form-control" value="">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Artículo</label>
-                    <select class="form-control" id="combobox1" name="combobox1">
+                    <select class="form-control" id="articulo" name="articulo">
                         <?php for ($i = 0; $i < count($arregloArticulo); $i++) { ?>
                           <option value="<?php echo $arregloArticulo[$i]->getId(); ?>">
                             <?php echo $arregloArticulo[$i]->getNombre(); ?>
@@ -360,7 +360,7 @@ switch ($boton) {
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Literal</label>
-                    <select class="form-control" id="combobox1" name="combobox1">
+                    <select class="form-control" id="literal" name="literal">
                         <?php for ($i = 0; $i < count($arregloLiteral); $i++) { ?>
                           <option value="<?php echo $arregloLiteral[$i]->getId(); ?>">
                             <?php echo $arregloLiteral[$i]->getDescripcion(); ?>
@@ -370,7 +370,7 @@ switch ($boton) {
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Parágrafo</label>
-                    <select class="form-control" id="combobox1" name="combobox1">
+                    <select class="form-control" id="paragrafo" name="paragrafo">
                         <?php for ($i = 0; $i < count($arregloParagrafo); $i++) { ?>
                           <option value="<?php echo $arregloParagrafo[$i]->getId(); ?>">
                             <?php echo $arregloParagrafo[$i]->getDescripcion(); ?>
@@ -390,8 +390,8 @@ switch ($boton) {
         <div class="tab-pane container fade" id="representacion">
           <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
               
-              <label for="combobox4">Todas las representaciones</label>  
-              <select class="form-control" id="combobox4" name="combobox4">
+              <label for="combobox1">Todas las representaciones</label>  
+              <select class="form-control" id="combobox1" name="combobox1">
                 <?php for ($i = 0; $i < count($arregloRepresenVisual); $i++) { ?>
                   <option value="<?php echo $arregloRepresenVisual[$i]->getId() . " - " . $arregloRepresenVisual[$i]->getNombre(); ?>">
                     <?php echo $arregloRepresenVisual[$i]->getId() . " - " . $arregloRepresenVisual[$i]->getNombre(); ?>
@@ -400,15 +400,15 @@ switch ($boton) {
               </select>
 
               <br>
-              <label for="listbox4">representaciones por indicador</label>
-              <select multiple class="form-control" id="listbox4" name="listbox4[]">
+              <label for="listbox1">representaciones por indicador</label>
+              <select multiple class="form-control" id="listbox1" name="listbox1[]">
               </select>
 
             </div>
             
             <div class="form-group float-right">
-              <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox4', 'listbox4')">Agregar Item</button>
-              <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox4')">Remover Item</button>
+              <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox1', 'listbox1')">Agregar Item</button>
+              <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox1')">Remover Item</button>
           </div>
 
 
@@ -417,8 +417,8 @@ switch ($boton) {
         <div class="tab-pane container fade" id="responsable">
         <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
             
-            <label for="combobox5">Todos los actores</label>  
-            <select class="form-control" id="combobox5" name="combobox5">
+            <label for="combobox2">Todos los actores</label>  
+            <select class="form-control" id="combobox2" name="combobox2">
               <?php for ($i = 0; $i < count($arregloActor); $i++) { ?>
                 <option value="<?php echo $arregloActor[$i]->getId() . " - " . $arregloActor[$i]->getNombre(); ?>">
                   <?php echo $arregloActor[$i]->getId() . " - " . $arregloActor[$i]->getNombre(); ?>
@@ -427,36 +427,7 @@ switch ($boton) {
             </select>
 
             <br>
-            <label for="listbox5">Actores por indicador</label>
-            <select multiple class="form-control" id="listbox5" name="listbox5[]">
-            </select>
-
-          </div>
-          
-          <div class="form-group float-right">
-            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox5', 'listbox5')">Agregar Item</button>
-            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox5')">Remover Item</button>
-          </div>
-
-
-        </div>
-
-        <div class="tab-pane container fade" id="fuente">
-          
-
-          <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
-            
-            <label for="combobox2">Todas las fuentes</label>  
-            <select class="form-control" id="combobox2" name="combobox2">
-              <?php for ($i = 0; $i < count($arregloFuente); $i++) { ?>
-                <option value="<?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>">
-                  <?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>
-                </option>
-              <?php } ?>
-            </select>
-
-            <br>
-            <label for="listbox2">Fuentes por indicador</label>
+            <label for="listbox2">Actores por indicador</label>
             <select multiple class="form-control" id="listbox2" name="listbox2[]">
             </select>
 
@@ -467,14 +438,43 @@ switch ($boton) {
             <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox2')">Remover Item</button>
           </div>
 
+
+        </div>
+
+        <div class="tab-pane container fade" id="fuente">
+          
+
+          <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+            
+            <label for="combobox3">Todas las fuentes</label>  
+            <select class="form-control" id="combobox3" name="combobox3">
+              <?php for ($i = 0; $i < count($arregloFuente); $i++) { ?>
+                <option value="<?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>">
+                  <?php echo $arregloFuente[$i]->getId() . " - " . $arregloFuente[$i]->getNombre(); ?>
+                </option>
+              <?php } ?>
+            </select>
+
+            <br>
+            <label for="listbox3">Fuentes por indicador</label>
+            <select multiple class="form-control" id="listbox3" name="listbox3[]">
+            </select>
+
+          </div>
+          
+          <div class="form-group float-right">
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox3', 'listbox3')">Agregar Item</button>
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox3')">Remover Item</button>
+          </div>
+
         </div>
 
 
         <div class="tab-pane container fade" id="variable">
 
         <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
-            <label for="combobox3">Todas las variables</label>
-            <select class="form-control" id="combobox3" name="combobox3">
+            <label for="combobox4">Todas las variables</label>
+            <select class="form-control" id="combobox4" name="combobox4">
 
               <?php for ($i = 0; $i < count($arregloVariable); $i++) { ?>
                 <option value="<?php echo $arregloVariable[$i]->getId() . " - " . $arregloVariable[$i]->getNombre(); ?>">
@@ -484,14 +484,14 @@ switch ($boton) {
 
             </select>
             <br>
-            <label for="listbox3">Variables por indicador</label>
-            <select multiple class="form-control" id="listbox3" name="listbox3[]">
+            <label for="listbox4">Variables por indicador</label>
+            <select multiple class="form-control" id="listbox4" name="listbox4[]">
 
             </select>
           </div>
           <div class="form-group float-right">
-            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox3', 'listbox3')">Agregar Item</button>
-            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox3')">Remover Item</button>
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox4', 'listbox4')">Agregar Item</button>
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox4')">Remover Item</button>
           </div>
         </div>
 
@@ -501,7 +501,7 @@ switch ($boton) {
           <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
             
             <label for="combobox6">Todos los resultados</label>  
-            <select class="form-control" id="combobox6" name="combobox6">
+            <select class="form-control" id="combobox5" name="combobox5">
               <?php for ($i = 0; $i < count($arregloResultado); $i++) { ?>
                 <option value="<?php echo $arregloResultado[$i]->getId() . " - " . $arregloResultado[$i]->getResultado(); ?>">
                   <?php echo $arregloResultado[$i]->getId() . " - " . $arregloResultado[$i]->getResultado(); ?>
@@ -510,15 +510,15 @@ switch ($boton) {
             </select>
 
             <br>
-            <label for="listbox6">Resultados por indicador</label>
-            <select multiple class="form-control" id="listbox6" name="listbox6[]">
+            <label for="listbox5">Resultados por indicador</label>
+            <select multiple class="form-control" id="listbox5" name="listbox5[]">
             </select>
 
           </div>
           
           <div class="form-group float-right">
-            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox6', 'listbox6')">Agregar Item</button>
-            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox6')">Remover Item</button>
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox5', 'listbox5')">Agregar Item</button>
+            <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox5')">Remover Item</button>
           </div>
 
         </div>
