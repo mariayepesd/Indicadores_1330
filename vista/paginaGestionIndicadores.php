@@ -1,4 +1,7 @@
 <?php
+
+use PSpell\Config;
+
 include '../controlador/configBd.php';
 include '../controlador/ControlConexion.php';
 
@@ -12,6 +15,8 @@ include '../controlador/ControlLiteral.php';
 include '../controlador/ControlParagrafo.php'; 
 
 include '../controlador/ControlRepresenVisual.php';
+
+include '../controlador/ControlFrecuencia.php';
 
 include '../controlador/ControlFuente.php';
 include '../controlador/ControlFuenteIndicador.php';
@@ -30,6 +35,7 @@ include '../controlador/ControlResponsablesPorIndicador.php';
 
 
 include '../modelo/Fuente.php';
+include '../modelo/Frecuencia.php';
 include '../modelo/Variable.php';
 include '../modelo/Resultado.php';
 include '../modelo/Indicador.php';
@@ -46,7 +52,23 @@ include '../modelo/Actor.php';
 
 
 $boton = "";
+
 $id = "";
+$codigo = "";
+$nombre = "";
+$objetivo = "";
+$alcance = "";
+$formula = "";
+$fktipoindicador = "";
+$fkunidadmedicion = "";
+$meta = "";
+$fkidsentido = "";
+$fkidfrecuencia = "";
+$fkidarticulo = "";
+$fkidliteral = "";
+$fkidnumeral = "";
+$fkidparagrafo = "";
+
 
 $listbox1 = array();
 $listbox2 = array();
@@ -55,7 +77,7 @@ $listbox4 = array();
 $listbox5 = array();
 $listbox6 = array();
 
-$objControlFuente = new ControlFuente(null, null);
+$objControlFuente = new ControlFuente(null);
 $objControlIndicador = new ControlIndicador(null);
 $objControlRepresenvisual = new ControlRepresenvisual(null);
 $objControlVariable = new ControlVariable(null);
@@ -68,6 +90,7 @@ $objControlArticulo = new ControlArticulo(null);
 $objControlLiteral = new ControlLiteral(null);
 $objControlParagrafo = new ControlParagrafo(null);
 $objControlActor = new ControlActor(null);
+$objControlFrecuencia = new ControlFrecuencia(null);
 
 
 $arregloFuente = $objControlFuente->listar();
@@ -82,32 +105,44 @@ $arregloArticulo = $objControlArticulo->listar();
 $arregloLiteral = $objControlLiteral->listar();
 $arregloParagrafo = $objControlParagrafo->listar();
 $arregloActor = $objControlActor->listar();
+$arregloFrecuencia = $objControlFrecuencia->listar();
 
 
 if (isset($_POST['bt'])) $boton = $_POST['bt']; //toma del arreglo post el value del bt	
-if (isset($_POST['selectindicador'])) $id = $_POST['selectindicador'];
-if (isset($_POST['listbox6'])) $listbox6 = $_POST['listbox6'];
+if (isset($_POST['txtId'])) $id = $_POST['txtId'];
+if (isset($_POST['txtCodigo'])) $codigo = $_POST['txtCodigo'];
+if (isset($_POST['txtNombre'])) $nombre = $_POST['txtNombre'];
+if (isset($_POST['txtObjetivo'])) $objetivo = $_POST['txtObjetivo'];
+if (isset($_POST['txtAlcance'])) $alcance = $_POST['txtAlcance'];
+if (isset($_POST['txtFormula'])) $formula = $_POST['txtFormula'];
+if (isset($_POST['tipoindicador'])) $fktipoindicador = $_POST['tipoindicador'];
+if (isset($_POST['unidadmedicion'])) $fkunidadmedicion = $_POST['unidadmedicion'];
+if (isset($_POST['txtMeta'])) $meta = $_POST['txtMeta'];
+if (isset($_POST['sentido'])) $fkidsentido = $_POST['sentido'];
+if (isset($_POST['frecuencia'])) $fkidfrecuencia = $_POST['frecuencia'];
+if (isset($_POST['articulo'])) $fkidarticulo = $_POST['articulo'];
+if (isset($_POST['literal'])) $fkidliteral = $_POST['literal'];
+if (isset($_POST['paragrafo'])) $fkidparagrafo = $_POST['paragrafo'];
+
+
 if (isset($_POST['listbox5'])) $listbox5 = $_POST['listbox5'];
 if (isset($_POST['listbox4'])) $listbox4 = $_POST['listbox4'];
 if (isset($_POST['listbox3'])) $listbox3 = $_POST['listbox3'];
 if (isset($_POST['listbox2'])) $listbox2 = $_POST['listbox2'];
 if (isset($_POST['listbox1'])) $listbox1 = $_POST['listbox1'];
+
 switch ($boton) {
 
   case 'Guardar':
 
-    $objFuente = new Fuente($id, $nom);
-    $objControlFuente = new ControlFuente($objFuente);
-    $objControlFuente->guardar();
-    if($listbox1 != ""){
+    $objIndicador = new Indicador($id,$codigo,$nombre,$objetivo,$alcance,$formula,
+    $fktipoindicador,$fkunidadmedicion,$meta,$fkidsentido,$fkidfrecuencia,$fkidarticulo,$fkidliteral,
+    $fkidnumeral,$fkidparagrafo);
 
-      for($i<0; $i<count($listbox1); $i++){
-
-        //$objFuenteIndicador = new FuenteIndicador();
-
-      }
-    }
+    $objControlIndicador = new ControlIndicador($objIndicador);
+    $objControlIndicador->guardar();
     header('Location: paginaGestionIndicadores.php');
+
     break;
  
   case 'Borrar':
@@ -150,7 +185,7 @@ switch ($boton) {
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
+  <!-- <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
       <h1 class="logo"><a href="paginaInicio.php">Indicadores 1330</a></h1>
@@ -180,7 +215,7 @@ switch ($boton) {
       </nav><!-- .navbar -->
 
     </div>
-  </header>  
+  </header>   -->
   
   <!-- End Header -->
 
@@ -222,7 +257,7 @@ switch ($boton) {
 					        for($i = 0; $i < count($arregloIndicador); $i++){
 					            ?>
                     <tr>
-                        <td><?php echo $arregloIndicador[$i]->getIdIndicador();?></td> 
+                        <td><?php echo $arregloIndicador[$i]->getId();?></td> 
                         <td><?php echo $arregloIndicador[$i]->getCodigo();?></td>
                         <td><?php echo $arregloIndicador[$i]->getNombre();?></td> 
                         <td><?php echo $arregloIndicador[$i]->getObjetivo();?></td>
@@ -288,27 +323,27 @@ switch ($boton) {
                 <div id="home" class="container tab-pane active"><br>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Id</label>
-                    <input type="text" id="txtId" name="txtId" class="form-control" value="">
+                    <input type="text" id="txtId" name="txtId" class="form-control" value="<?php echo $id ?>">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Código</label>
-                    <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" value="">
+                    <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" value="<?php echo $codigo ?>">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Nombre</label>
-                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="">
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="<?php echo $nombre ?>">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Objetivo</label>
-                    <input type="text" id="txtObjetivo" name="txtObjetivo" class="form-control" value="">
+                    <input type="text" id="txtObjetivo" name="txtObjetivo" class="form-control" value="<?php echo $objetivo ?>">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Alcance</label>
-                    <input type="text" id="txtAlcance" name="txtAlcance" class="form-control" value="">
+                    <input type="text" id="txtAlcance" name="txtAlcance" class="form-control" value="<?php echo $alcance ?>">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Fórmula</label>
-                    <input type="text" id="txtFormula" name="txtFormula" class="form-control" value="">
+                    <input type="text" id="txtFormula" name="txtFormula" class="form-control" value="<?php echo $formula ?>">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Tipo de Indicador</label>
@@ -332,7 +367,7 @@ switch ($boton) {
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Meta</label>
-                    <input type="text" id="txtMeta" name="txtMeta" class="form-control" value="">
+                    <input type="text" id="txtMeta" name="txtMeta" class="form-control" value="<?php echo $meta ?>">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Sentido</label>
@@ -346,7 +381,13 @@ switch ($boton) {
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Frecuencia</label>
-                    <input type="text" id="txtFrecuencia" name="txtFrecuencia" class="form-control" value="">
+                    <select class="form-control" id="frecuencia" name="frecuencia">
+                        <?php for ($i = 0; $i < count($arregloFrecuencia); $i++) { ?>
+                          <option value="<?php echo $arregloFrecuencia[$i]->getId(); ?>">
+                            <?php echo $arregloFrecuencia[$i]->getValor(); ?>
+                          </option>
+                        <?php } ?>
+                      </select>
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Artículo</label>
