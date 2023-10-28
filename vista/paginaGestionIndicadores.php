@@ -500,7 +500,7 @@ switch ($boton) {
 
           <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
             
-            <label for="combobox6">Todas las fuentes</label>  
+            <label for="combobox6">Todos los resultados</label>  
             <select class="form-control" id="combobox6" name="combobox6">
               <?php for ($i = 0; $i < count($arregloResultado); $i++) { ?>
                 <option value="<?php echo $arregloResultado[$i]->getId() . " - " . $arregloResultado[$i]->getResultado(); ?>">
@@ -510,7 +510,7 @@ switch ($boton) {
             </select>
 
             <br>
-            <label for="listbox6">Fuentes por indicador</label>
+            <label for="listbox6">Resultados por indicador</label>
             <select multiple class="form-control" id="listbox6" name="listbox6[]">
             </select>
 
