@@ -357,7 +357,7 @@ switch ($boton) {
                     <select class="form-control" id="tipoindicador" name="tipoindicador">
                         <?php for ($i = 0; $i < count($arregloTipoIndicador); $i++) { ?>
                           <option value="<?php echo $arregloTipoIndicador[$i]->getId(); ?>">
-                            <?php echo $arregloTipoIndicador[$i]->getNombre(); ?>
+                            <?php echo $arregloTipoIndicador[$i]->getId(); ?>
                           </option>
                         <?php } ?>
                       </select>
@@ -367,7 +367,7 @@ switch ($boton) {
                     <select class="form-control" id="unidadmedicion" name="unidadmedicion">
                         <?php for ($i = 0; $i < count($arregloUnidadMedicion); $i++) { ?>
                           <option value="<?php echo $arregloUnidadMedicion[$i]->getId(); ?>">
-                            <?php echo $arregloUnidadMedicion[$i]->getDescripcion(); ?>
+                            <?php echo $arregloUnidadMedicion[$i]->getId(); ?>
                           </option>
                         <?php } ?>
                       </select>
@@ -381,7 +381,7 @@ switch ($boton) {
                     <select class="form-control" id="sentido" name="sentido">
                         <?php for ($i = 0; $i < count($arregloSentido); $i++) { ?>
                           <option value="<?php echo $arregloSentido[$i]->getId(); ?>">
-                            <?php echo $arregloSentido[$i]->getNombre(); ?>
+                            <?php echo $arregloSentido[$i]->getId(); ?>
                           </option>
                         <?php } ?>
                       </select>
@@ -391,7 +391,7 @@ switch ($boton) {
                     <select class="form-control" id="frecuencia" name="frecuencia">
                         <?php for ($i = 0; $i < count($arregloFrecuencia); $i++) { ?>
                           <option value="<?php echo $arregloFrecuencia[$i]->getId(); ?>">
-                            <?php echo $arregloFrecuencia[$i]->getValor(); ?>
+                            <?php echo $arregloFrecuencia[$i]->getId(); ?>
                           </option>
                         <?php } ?>
                       </select>
@@ -401,7 +401,7 @@ switch ($boton) {
                     <select class="form-control" id="articulo" name="articulo">
                         <?php for ($i = 0; $i < count($arregloArticulo); $i++) { ?>
                           <option value="<?php echo $arregloArticulo[$i]->getId(); ?>">
-                            <?php echo $arregloArticulo[$i]->getNombre(); ?>
+                            <?php echo $arregloArticulo[$i]->getId(); ?>
                           </option>
                         <?php } ?>
                       </select>
@@ -411,7 +411,7 @@ switch ($boton) {
                     <select class="form-control" id="literal" name="literal">
                         <?php for ($i = 0; $i < count($arregloLiteral); $i++) { ?>
                           <option value="<?php echo $arregloLiteral[$i]->getId(); ?>">
-                            <?php echo $arregloLiteral[$i]->getDescripcion(); ?>
+                            <?php echo $arregloLiteral[$i]->getId(); ?>
                           </option>
                         <?php } ?>
                       </select>
@@ -422,7 +422,7 @@ switch ($boton) {
                     <select class="form-control" id="numeral" name="numeral">
                         <?php for ($i = 0; $i < count($arregloNumeral); $i++) { ?>
                           <option value="<?php echo $arregloNumeral[$i]->getId(); ?>">
-                            <?php echo $arregloNumeral[$i]->getDescripcion(); ?>
+                            <?php echo $arregloNumeral[$i]->getId(); ?>
                           </option>
                         <?php } ?>
                       </select>
@@ -433,7 +433,7 @@ switch ($boton) {
                     <select class="form-control" id="paragrafo" name="paragrafo">
                         <?php for ($i = 0; $i < count($arregloParagrafo); $i++) { ?>
                           <option value="<?php echo $arregloParagrafo[$i]->getId(); ?>">
-                            <?php echo $arregloParagrafo[$i]->getDescripcion(); ?>
+                            <?php echo $arregloParagrafo[$i]->getId(); ?>
                           </option>
                         <?php } ?>
                       </select>

@@ -26,21 +26,22 @@
             $fkidnumeral = $this->objIndicador->getFkIdNumeral();
             $fkidparagrafo = $this->objIndicador->getFkIdParagrafo();
                 
-            $comandoSql = "INSERT INTO indicador(id, codigo, nombre, objetivo, alcance, formula, fkidtipoindicador, fkidunidadmedicion, 
-                                                meta, fkidsentido, fkidfrecuencia, fkidarticulo, fkidliteral, fkidnumeral, fkidparagrafo) VALUES ('$id', '$codigo', '$nombre', '$objetivo',
-                                                '$alcance', '$formula', '$fktipoindicador', '$fkunidadmedicion', '$meta', '$fkidsentido', '$fkidfrecuencia', '$fkidarticulo', '$fkidliteral',
-                                                '$fkidnumeral', '$fkidparagrafo')";
+            $comandoSql = "INSERT INTO indicador(id, codigo, nombre, objetivo, alcance, formula, fkidtipoindicador, fkidunidadmedicion, meta, fkidsentido, fkidfrecuencia, fkidarticulo, fkidliteral, fkidnumeral, fkidparagrafo) VALUES ('$id', '$codigo', '$nombre', '$objetivo',
+            '$alcance', '$formula', '$fktipoindicador', '$fkunidadmedicion', '$meta', '$fkidsentido', '$fkidfrecuencia', '$fkidarticulo', '$fkidliteral', '$fkidnumeral', '$fkidparagrafo')";
+
 
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);
+
+            echo($comandoSql);
             $objControlConexion->cerrarBd();
         }
 
         function listar() {
-            $comandoSql = "SELECT i.id, i.codigo, i.nombre, i.objetivo, i.alcance, i.formula, t.nombre AS tipoindicador, 
-                u.descripcion AS unidadmedicion, i.meta, s.nombre AS sentido, i.fkidfrecuencia, a.nombre AS articulo, l.descripcion AS literal, 
-                n.descripcion AS numeral, p.descripcion AS paragrafo 
+            $comandoSql = "SELECT i.id, i.codigo, i.nombre, i.objetivo, i.alcance, i.formula, t.id AS tipoindicador, 
+                u.id AS unidadmedicion, i.meta, s.id AS sentido, i.fkidfrecuencia, a.id AS articulo, l.id AS literal, 
+                n.id AS numeral, p.id AS paragrafo 
                 FROM indicador i
                 LEFT JOIN tipoindicador t ON i.fkidtipoindicador = t.id 
                 INNER JOIN unidadmedicion u ON i.fkidunidadmedicion = u.id 
