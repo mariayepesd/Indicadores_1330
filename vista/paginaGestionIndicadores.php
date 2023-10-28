@@ -6,7 +6,7 @@ include '../controlador/ControlIndicador.php';
 include '../controlador/ControlMedicion.php';
 include '../controlador/ControlTipoIndicador.php';
 include '../controlador/ControlSentido.php';
-include '../controlador/ControlFrecuencia.php'; 
+
 include '../controlador/ControlArticulo.php'; 
 include '../controlador/ControlLiteral.php'; 
 include '../controlador/ControlParagrafo.php'; 
@@ -28,8 +28,8 @@ include '../controlador/ControlActor.php';
 include '../controlador/ControlResponsablesPorIndicador.php';
 
 
+
 include '../modelo/Fuente.php';
-include '../modelo/Frecuencia.php';
 include '../modelo/Variable.php';
 include '../modelo/Resultado.php';
 include '../modelo/Indicador.php';
@@ -44,6 +44,7 @@ include '../modelo/Literal.php';
 include '../modelo/Paragrafo.php'; 
 include '../modelo/Actor.php'; 
 
+
 $boton = "";
 $id = "";
 
@@ -52,9 +53,9 @@ $listbox2 = array();
 $listbox3 = array();
 $listbox4 = array();
 $listbox5 = array();
+$listbox6 = array();
 
 $objControlFuente = new ControlFuente(null, null);
-$objControlFrecuencia = new ControlFrecuencia(null, null);
 $objControlIndicador = new ControlIndicador(null);
 $objControlRepresenvisual = new ControlRepresenvisual(null);
 $objControlVariable = new ControlVariable(null);
@@ -68,6 +69,7 @@ $objControlLiteral = new ControlLiteral(null);
 $objControlParagrafo = new ControlParagrafo(null);
 $objControlActor = new ControlActor(null);
 
+
 $arregloFuente = $objControlFuente->listar();
 $arregloIndicador = $objControlIndicador->listar();
 $arregloRepresenVisual = $objControlRepresenvisual->listar();
@@ -80,10 +82,11 @@ $arregloArticulo = $objControlArticulo->listar();
 $arregloLiteral = $objControlLiteral->listar();
 $arregloParagrafo = $objControlParagrafo->listar();
 $arregloActor = $objControlActor->listar();
-$arregloFrecuencia = $objControlFrecuencia->listar();
+
 
 if (isset($_POST['bt'])) $boton = $_POST['bt']; //toma del arreglo post el value del bt	
 if (isset($_POST['selectindicador'])) $id = $_POST['selectindicador'];
+if (isset($_POST['listbox6'])) $listbox6 = $_POST['listbox6'];
 if (isset($_POST['listbox5'])) $listbox5 = $_POST['listbox5'];
 if (isset($_POST['listbox4'])) $listbox4 = $_POST['listbox4'];
 if (isset($_POST['listbox3'])) $listbox3 = $_POST['listbox3'];
@@ -275,6 +278,7 @@ switch ($boton) {
                 <li class="nav-item">
                   <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold" data-toggle="tab" href="#variable">Variable / indicador</a>
                 </li>
+                </li>
                 <li class="nav-item">
                   <a style="color: #3b4ef8; font-family:'Open Sans',sans-serif; font-size: 14px;" class="nav-link font-weight-bold" data-toggle="tab" href="#resultado">Resultado / indicador</a>
                 </li>
@@ -284,7 +288,7 @@ switch ($boton) {
                 <div id="home" class="container tab-pane active"><br>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Id</label>
-                    <input type="text" id="txtId" name="txtEmail" class="form-control" value="">
+                    <input type="email" id="txtEmail" name="txtEmail" class="form-control" value="">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Código</label>
@@ -342,13 +346,7 @@ switch ($boton) {
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Frecuencia</label>
-                    <select class="form-control" id="combobox1" name="combobox1">
-                        <?php for ($i = 0; $i < count($arregloFrecuencia); $i++) { ?>
-                          <option value="<?php echo $arregloFrecuencia[$i]->getId(); ?>">
-                            <?php echo $arregloFrecuencia[$i]->getValor(); ?>
-                          </option>
-                        <?php } ?>
-                      </select>
+                    <input type="text" id="txtContrasena" name="txtContrasena" class="form-control" value="">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Artículo</label>
@@ -498,36 +496,41 @@ switch ($boton) {
         </div>
 
         <div class="tab-pane container fade" id="resultado">
+          
 
-        <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
-            <label for="combobox6">Todos los Resultados</label>
+          <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+            
+            <label for="combobox6">Todas las fuentes</label>  
             <select class="form-control" id="combobox6" name="combobox6">
-
               <?php for ($i = 0; $i < count($arregloResultado); $i++) { ?>
                 <option value="<?php echo $arregloResultado[$i]->getId() . " - " . $arregloResultado[$i]->getResultado(); ?>">
                   <?php echo $arregloResultado[$i]->getId() . " - " . $arregloResultado[$i]->getResultado(); ?>
                 </option>
               <?php } ?>
-
             </select>
+
             <br>
-            <label for="listbox6">Resultados por indicador</label>
+            <label for="listbox6">Fuentes por indicador</label>
             <select multiple class="form-control" id="listbox6" name="listbox6[]">
-
             </select>
+
           </div>
+          
           <div class="form-group float-right">
             <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnAgregarItem" name="bt" class="btn btn-secondary" onclick="agregarItem('combobox6', 'listbox6')">Agregar Item</button>
             <button style="font-family:'Open Sans',sans-serif;font-size: 14px;" type="button" id="btnRemoverItem" name="bt" class="btn btn-secondary" onclick="removerItem('listbox6')">Remover Item</button>
           </div>
+
         </div>
 
 
 
+       
+
+
             
 
-          </div>
-        </form>
+
       </div>
     </div>
   </div>
