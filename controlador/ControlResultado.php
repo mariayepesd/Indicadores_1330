@@ -9,10 +9,10 @@ class ControlResultado{
     }
 
     function guardar(){
-        $id = $this->objFuente->getId(); 
-        $nom = $this->objFuente->getResultado();
+        $id = $this->objResultado->getId(); 
+        $res = $this->objResultado->getResultado();
             
-        $comandoSql = "INSERT INTO resultado(id,resultado) VALUES ('$id', '$resultado')";
+        $comandoSql = "INSERT INTO resultado(id,resultado) VALUES ('$id', '$res')";
         $objControlConexion = new ControlConexion();
         $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
         $objControlConexion->ejecutarComandoSql($comandoSql);
@@ -63,7 +63,7 @@ class ControlResultado{
         $id = $this->objResultado->getId(); 
         $res = $this->objResultado->getResultado();
         
-        $comandoSql = "UPDATE resultado SET resultado = $resultado WHERE id = '$id'";
+        $comandoSql = "UPDATE resultado SET resultado = $res WHERE id = '$id'";
         $objControlConexion = new ControlConexion();
         $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
         $objControlConexion->ejecutarComandoSql($comandoSql);
@@ -74,7 +74,7 @@ class ControlResultado{
 
         $res= $this->objResultado->getResultado(); 
 
-        $comandoSql = "DELETE FROM resultado WHERE resultado = $resultado";
+        $comandoSql = "DELETE FROM resultado WHERE resultado = $res";
         $objControlConexion = new ControlConexion();
         $objControlConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat'],$GLOBALS['port']);
         $objControlConexion->ejecutarComandoSql($comandoSql);
