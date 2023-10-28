@@ -28,6 +28,7 @@ include '../controlador/ControlResultadoIndicador.php';
 include '../controlador/ControlResultado.php';
 
 include '../controlador/Controlrepresenvisualporindicador.php';
+include '../controlador/ControlNumeral.php';
 
 include '../controlador/ControlActor.php';
 include '../controlador/ControlResponsablesPorIndicador.php';
@@ -49,6 +50,7 @@ include '../modelo/Articulo.php';
 include '../modelo/Literal.php'; 
 include '../modelo/Paragrafo.php'; 
 include '../modelo/Actor.php'; 
+include '../modelo/Numeral.php'; 
 
 
 $boton = "";
@@ -91,6 +93,7 @@ $objControlLiteral = new ControlLiteral(null);
 $objControlParagrafo = new ControlParagrafo(null);
 $objControlActor = new ControlActor(null);
 $objControlFrecuencia = new ControlFrecuencia(null);
+$objControlNumeral = new ControlNumeral(null);
 
 
 $arregloFuente = $objControlFuente->listar();
@@ -106,6 +109,7 @@ $arregloLiteral = $objControlLiteral->listar();
 $arregloParagrafo = $objControlParagrafo->listar();
 $arregloActor = $objControlActor->listar();
 $arregloFrecuencia = $objControlFrecuencia->listar();
+$arregloNumeral = $objControlNumeral->listar();
 
 
 if (isset($_POST['bt'])) $boton = $_POST['bt']; //toma del arreglo post el value del bt	
@@ -122,6 +126,7 @@ if (isset($_POST['sentido'])) $fkidsentido = $_POST['sentido'];
 if (isset($_POST['frecuencia'])) $fkidfrecuencia = $_POST['frecuencia'];
 if (isset($_POST['articulo'])) $fkidarticulo = $_POST['articulo'];
 if (isset($_POST['literal'])) $fkidliteral = $_POST['literal'];
+if (isset($_POST['numeral'])) $fkidnumeral = $_POST['numeral'];
 if (isset($_POST['paragrafo'])) $fkidparagrafo = $_POST['paragrafo'];
 
 
@@ -249,6 +254,7 @@ switch ($boton) {
                                 <th>Frecuencia</th>
                                 <th>Artículo</th>
                                 <th>Literal</th>
+                                <th>Numeral</th>
                                 <th>Parágrafo</th>
 
                             </tr>
@@ -270,6 +276,7 @@ switch ($boton) {
                         <td><?php echo $arregloIndicador[$i]->getFkIdFrecuencia();?>                                       
                         <td><?php echo $arregloIndicador[$i]->getFkIdArticulo();?></td>
                         <td><?php echo $arregloIndicador[$i]->getFkIdLiteral();?></td>
+                        <td><?php echo $arregloIndicador[$i]->getFkIdNumeral();?></td>
                         <td><?php echo $arregloIndicador[$i]->getFkIdParagrafo();?></td>
                     </tr>
                     <?php
@@ -409,6 +416,18 @@ switch ($boton) {
                         <?php } ?>
                       </select>
                   </div>
+
+                  <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Numeral</label>
+                    <select class="form-control" id="numeral" name="numeral">
+                        <?php for ($i = 0; $i < count($arregloNumeral); $i++) { ?>
+                          <option value="<?php echo $arregloNumeral[$i]->getId(); ?>">
+                            <?php echo $arregloNumeral[$i]->getDescripcion(); ?>
+                          </option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                  
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Parágrafo</label>
                     <select class="form-control" id="paragrafo" name="paragrafo">

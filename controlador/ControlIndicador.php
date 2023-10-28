@@ -26,8 +26,8 @@
             $fkidnumeral = $this->objIndicador->getFkIdNumeral();
             $fkidparagrafo = $this->objIndicador->getFkIdParagrafo();
                 
-            $comandoSql = "INSERT INTO indicador(id, codigo, nombre, objetivo, alcance, formula, fktipoindicador, fkunidadmedicion, 
-                                                meta, fkidsentido, fkidfrecuencia, fkidarticulo, fkidliteral, fkidnumeral, fkidparagrafo  ) VALUES ('$id', '$codigo', '$nombre', '$objetivo',
+            $comandoSql = "INSERT INTO indicador(id, codigo, nombre, objetivo, alcance, formula, fkidtipoindicador, fkidunidadmedicion, 
+                                                meta, fkidsentido, fkidfrecuencia, fkidarticulo, fkidliteral, fkidnumeral, fkidparagrafo) VALUES ('$id', '$codigo', '$nombre', '$objetivo',
                                                 '$alcance', '$formula', '$fktipoindicador', '$fkunidadmedicion', '$meta', '$fkidsentido', '$fkidfrecuencia', '$fkidarticulo', '$fkidliteral',
                                                 '$fkidnumeral', '$fkidparagrafo')";
 
