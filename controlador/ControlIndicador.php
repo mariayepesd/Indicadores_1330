@@ -11,9 +11,26 @@
         function guardar() {
 
             $id = $this->objIndicador->getId(); 
-            $nom = $this->objIndicador->getNombre();
+            $codigo = $this->objIndicador->getCodigo();
+            $nombre = $this->objIndicador->getNombre();
+            $objetivo = $this->objIndicador->getObjetivo();
+            $alcance = $this->objIndicador->getAlcance();
+            $formula = $this->objIndicador->getFormula();
+            $fktipoindicador = $this->objIndicador->getFkTipoIndicador();
+            $fkunidadmedicion = $this->objIndicador->getFkUnidadMedicion();
+            $meta = $this->objIndicador->getMeta();
+            $fkidsentido = $this->objIndicador->getFkIdSentido();
+            $fkidfrecuencia = $this->objIndicador->getFkIdFrecuencia();
+            $fkidarticulo = $this->objIndicador->getFkIdArticulo();
+            $fkidliteral = $this->objIndicador->getFkIdLiteral();
+            $fkidnumeral = $this->objIndicador->getFkIdNumeral();
+            $fkidparagrafo = $this->objIndicador->getFkIdParagrafo();
                 
-            $comandoSql = "INSERT INTO indicador(id,nombre) VALUES ('$id', '$nom')";
+            $comandoSql = "INSERT INTO indicador(id, codigo, nombre, objetivo, alcance, formula, fktipoindicador, fkunidadmedicion, 
+                                                meta, fkidsentido, fkidfrecuencia, fkidarticulo, fkidliteral, fkidnumeral, fkidparagrafo  ) VALUES ('$id', '$codigo', '$nombre', '$objetivo',
+                                                '$alcance', '$formula', '$fktipoindicador', '$fkunidadmedicion', '$meta', '$fkidsentido', '$fkidfrecuencia', '$fkidarticulo', '$fkidliteral',
+                                                '$fkidnumeral', '$fkidparagrafo')";
+
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);
@@ -45,7 +62,7 @@
 
                     $objIndicador = new Indicador("","","","","","","","","","","","","","","","");
 
-                    $objIndicador->setIdIndicador($row['id']);
+                    $objIndicador->setId($row['id']);
                     $objIndicador->setCodigo($row['codigo']);
                     $objIndicador->setNombre($row['nombre']);
                     $objIndicador->setObjetivo($row['objetivo']);

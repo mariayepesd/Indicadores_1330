@@ -1,7 +1,7 @@
 <?php
     class Indicador{
 
-        var $id_indicador;
+        var $id;
         var $codigo;
         var $nombre;
         var $objetivo;
@@ -19,7 +19,7 @@
 
         function __construct($id, $codigo, $nombre, $objetivo, $alcance, $formula, $meta, $fktipoindicador, $fkunidadmedicion,
                              $fkidsentido, $fkidfrecuencia, $fkidarticulo, $fkidliteral, $fkidnumeral, $fkidparagrafo) {
-            $this->id_indicador = $id;
+            $this->id = $id;
             $this->codigo = $codigo;
             $this->nombre = $nombre;
             $this->objetivo = $objetivo;
@@ -39,8 +39,8 @@
      
         // Métodos "get" para obtener el valor de las propiedades
         
-        public function getIdIndicador() {
-            return $this->id_indicador;
+        public function getId() {
+            return $this->id;
         }
 
         public function getCodigo() {
@@ -101,8 +101,8 @@
 
         // Métodos "set" para establecer el valor de las propiedades
 
-        public function setIdIndicador($id) {
-            $this->id_indicador = $id;
+        public function setId($id) {
+            $this->id = $id;
         }
 
         public function setCodigo($codigo) {
