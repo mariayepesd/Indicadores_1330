@@ -17,7 +17,7 @@
         var $fkidnumeral;
         var $fkidparagrafo;
 
-        function __construct($id, $codigo, $nombre, $objetivo, $alcance, $formula, $meta, $fktipoindicador, $fkunidadmedicion,
+        function __construct($id, $codigo, $nombre, $objetivo, $alcance, $formula, $fktipoindicador, $fkunidadmedicion, $meta, 
                              $fkidsentido, $fkidfrecuencia, $fkidarticulo, $fkidliteral, $fkidnumeral, $fkidparagrafo) {
             $this->id = $id;
             $this->codigo = $codigo;

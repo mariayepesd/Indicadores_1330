@@ -10,32 +10,37 @@
 
         function guardar() {
 
-            $id = $this->objIndicador->getId(); 
+          try{
+
             $codigo = $this->objIndicador->getCodigo();
             $nombre = $this->objIndicador->getNombre();
             $objetivo = $this->objIndicador->getObjetivo();
             $alcance = $this->objIndicador->getAlcance();
             $formula = $this->objIndicador->getFormula();
-            $fktipoindicador = $this->objIndicador->getFkTipoIndicador();
-            $fkunidadmedicion = $this->objIndicador->getFkUnidadMedicion();
+            $fktipoindicador = $this->objIndicador->getFkTipoIndicador(); //numero
+            $fkunidadmedicion = $this->objIndicador->getFkUnidadMedicion(); //numero
             $meta = $this->objIndicador->getMeta();
-            $fkidsentido = $this->objIndicador->getFkIdSentido();
-            $fkidfrecuencia = $this->objIndicador->getFkIdFrecuencia();
+            $fkidsentido = $this->objIndicador->getFkIdSentido(); //numero
+            $fkidfrecuencia = $this->objIndicador->getFkIdFrecuencia(); //numero
             $fkidarticulo = $this->objIndicador->getFkIdArticulo();
             $fkidliteral = $this->objIndicador->getFkIdLiteral();
             $fkidnumeral = $this->objIndicador->getFkIdNumeral();
             $fkidparagrafo = $this->objIndicador->getFkIdParagrafo();
                 
-            $comandoSql = "INSERT INTO indicador(id, codigo, nombre, objetivo, alcance, formula, fkidtipoindicador, fkidunidadmedicion, meta, fkidsentido, fkidfrecuencia, fkidarticulo, fkidliteral, fkidnumeral, fkidparagrafo) VALUES ('$id', '$codigo', '$nombre', '$objetivo',
-            '$alcance', '$formula', '$fktipoindicador', '$fkunidadmedicion', '$meta', '$fkidsentido', '$fkidfrecuencia', '$fkidarticulo', '$fkidliteral', '$fkidnumeral', '$fkidparagrafo')";
-
+            $comandoSql = "INSERT INTO indicador (codigo, nombre, objetivo, alcance, formula, fkidtipoindicador, fkidunidadmedicion, meta, 
+            fkidsentido, fkidfrecuencia, fkidarticulo, fkidliteral, fkidnumeral, fkidparagrafo) 
+            VALUES ('$codigo', '$nombre', '$objetivo', '$alcance', '$formula', $fktipoindicador, $fkunidadmedicion, '$meta', $fkidsentido, $fkidfrecuencia, 
+            '$fkidarticulo', '$fkidliteral', '$fkidnumeral', '$fkidparagrafo')";
 
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);
-
-            echo($comandoSql);
             $objControlConexion->cerrarBd();
+          }
+            catch(Exception $ex){
+
+                throw new Exception("Error " .$ex->getMessage());
+            }
         }
 
         function listar() {
