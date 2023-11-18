@@ -4,6 +4,7 @@
 	   var $objUsuario;
 
         function __construct($objUsuario){
+
             $this->objUsuario = $objUsuario;
         }
 
@@ -31,10 +32,11 @@
             return $validar;
     }
 
-        function consultarRolesPorUsuario($nomUsu){
+        function consultarRolesPorUsuario($email){
+
             $msg = "ok";
             $listadoRolesDelUsuario = [];
-            $comandoSQL = "SELECT fkIdRol FROM tblrol_usuario WHERE fkNomUsuario='$nomUsu'";
+            $comandoSQL = "SELECT fkidrol FROM rol_usuario WHERE fkemail='$email'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $recordSet = $objControlConexion->ejecutarSelect($comandoSQL);
@@ -59,6 +61,7 @@
         }
 
         function guardar(){
+            
             $ema = $this->objUsuario->getEmail(); 
             $con = $this->objUsuario->getContrasena();
                 

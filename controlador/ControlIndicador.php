@@ -11,7 +11,7 @@
         function guardar() {
 
           try{
-
+            $id  = $this->objIndicador->getId();
             $codigo = $this->objIndicador->getCodigo();
             $nombre = $this->objIndicador->getNombre();
             $objetivo = $this->objIndicador->getObjetivo();
@@ -27,7 +27,7 @@
             $fkidnumeral = $this->objIndicador->getFkIdNumeral();
             $fkidparagrafo = $this->objIndicador->getFkIdParagrafo();
                 
-            $comandoSql = "INSERT INTO indicador (codigo, nombre, objetivo, alcance, formula, fkidtipoindicador, fkidunidadmedicion, meta, 
+            $comandoSql = "INSERT INTO indicador (id,codigo, nombre, objetivo, alcance, formula, fkidtipoindicador, fkidunidadmedicion, meta, 
             fkidsentido, fkidfrecuencia, fkidarticulo, fkidliteral, fkidnumeral, fkidparagrafo) 
             VALUES ('$codigo', '$nombre', '$objetivo', '$alcance', '$formula', $fktipoindicador, $fkunidadmedicion, '$meta', $fkidsentido, $fkidfrecuencia, 
             '$fkidarticulo', '$fkidliteral', '$fkidnumeral', '$fkidparagrafo')";
@@ -96,9 +96,9 @@
 
         function consultar(){
 
-            $cod= $this->objIndicador->getCodigo(); 
+            $id = $this->objIndicador->getId(); 
         
-            $comandoSql = "SELECT * FROM indicador WHERE codigo = '$cod'";
+            $comandoSql = "SELECT * FROM indicador WHERE id = '$id'";
 
             $objControlConexion = new ControlConexion();
 
@@ -171,8 +171,8 @@
 
         function borrar(){
 
-            $cod= $this->objIndicador->getCodigo(); 
-            $comandoSql = "DELETE FROM indicador WHERE nombre = '$cod'";
+            $id = $this->objIndicador->getId(); 
+            $comandoSql = "DELETE FROM indicador WHERE id = '$id'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat'],$GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);
