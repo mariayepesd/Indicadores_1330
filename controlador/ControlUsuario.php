@@ -4,15 +4,17 @@
 	   var $objUsuario;
 
         function __construct($objUsuario){
+
             $this->objUsuario = $objUsuario;
         }
 
-        function validarIngreso(){
+        function validarIngreso() { 
+
                 $msg = "ok";
                 $validar = false;
-                $usu = $this->objUsuario->getEmail(); 
+                $ema = $this->objUsuario->getEmail(); 
                 $con = $this->objUsuario->getContrasena();
-                $comandoSql = "SELECT * FROM usuario WHERE email='$usu' AND contrasena='$con'";
+                $comandoSql = "SELECT * FROM usuario WHERE email='$ema' AND contrasena='$con'";
                 $objControlConexion = new ControlConexion();
                 $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
                 $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
@@ -24,17 +26,18 @@
                     }
                     $objControlConexion->cerrarBd();
                 }
-                catch (Exception $objExcetion)
+                catch (Exception $objException)
                 {
-                    $msg = $objExcetion->getMessage();
+                    $msg = $objException->getMessage();
                 } 
                 return $validar;
         }
 
-        function consultarRolesPorUsuario($nomUsu){
+        function consultarRolesPorUsuario($email){
+
             $msg = "ok";
             $listadoRolesDelUsuario = [];
-            $comandoSQL = "SELECT fkIdRol FROM tblrol_usuario WHERE fkNomUsuario='$nomUsu'";
+            $comandoSQL = "SELECT fkidrol FROM rol_usuario WHERE fkemail='$email'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $recordSet = $objControlConexion->ejecutarSelect($comandoSQL);
@@ -59,6 +62,7 @@
         }
 
         function guardar(){
+            
             $ema = $this->objUsuario->getEmail(); 
             $con = $this->objUsuario->getContrasena();
                 
