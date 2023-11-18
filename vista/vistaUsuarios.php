@@ -1,4 +1,17 @@
 <?php
+ob_start();
+?>
+<?php 
+	session_start();
+	if($_SESSION['email']==null)header('Location: ../index.php');
+?>
+
+<?php
+	session_start();
+	session_destroy();
+	header('Location: ../index.php');
+?>
+<?php
 	include '../controlador/configBd.php';
 	include '../controlador/ControlConexion.php';
 	include '../controlador/ControlUsuario.php';

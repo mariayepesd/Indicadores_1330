@@ -54,7 +54,6 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#usuarios">Módulo Usuarios</a></li>
-          <li><a class="getstarted scrollto" href="#login">Iniciar Sesión</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -68,7 +67,6 @@
     <div class="container d-flex flex-column align-items-center justify-content-center" data-aos="fade-up">
       <h1>Sistema de gestión de Indicadores</h1>
       <h2>Para el análisis de la calidad académica de IES</h2>
-      <a href="#about" class="btn-get-started scrollto">Iniciar Sesión</a>
       <img src="../assets/img/hero-img.png" class="img-fluid hero-img" alt="" data-aos="zoom-in" data-aos-delay="150">
     </div>
 
