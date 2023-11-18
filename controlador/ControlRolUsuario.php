@@ -17,9 +17,9 @@
         }
 
         function listarRolesDelUsuario($fkEmail){
-            $comandoSql = "SELECT rol_usuario.fkidrol,rol.nombre 
-            FROM rol_usuario INNER JOIN ROL ON rol_usuario.fkidrol = rol.id
-            WHERE fkemail = '$fkEmail'";
+            $comandoSql = "SELECT rol.id, rol.nombre
+            FROM rol_usuario INNER JOIN rol ON rol_usuario.fkidrol = rol.id
+            WHERE rol_usuario.fkemail = '$fkEmail'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
             $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
@@ -38,11 +38,8 @@
             return $arregloRoles;
         }
 
-
-        function borrar(){
-            $fkEmail = $this->objRolUsuario->getFkEmail(); 
-            $fkIdRol = $this->objRolUsuario->getFkIdRol();
-            $comandoSql = "DELETE FROM rol_usuario WHERE fkEmail = '$fkEmail' AND fkIdRol = '$fkIdRol'";
+        function borrarRolesDelUsuario($fkEmail){
+            $comandoSql = "DELETE FROM rol_usuario WHERE fkemail = '$fkEmail'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat'],$GLOBALS['port']);
             $objControlConexion->ejecutarComandoSql($comandoSql);
