@@ -51,10 +51,12 @@ include '../modelo/Literal.php';
 include '../modelo/Paragrafo.php';
 include '../modelo/Actor.php';
 include '../modelo/Numeral.php';
-
+include '../modelo/responsablesporindicador.php';
+include '../modelo/ResultadoIndicador.php';
+include '../modelo/VariableIndicador.php';
 
 $boton = "";
-
+$id = "";
 $codigo = "";
 $nombre = "";
 $objetivo = "";
@@ -69,6 +71,8 @@ $fkidarticulo = "";
 $fkidliteral = "";
 $fkidnumeral = "";
 $fkidparagrafo = "";
+
+$arregloFuenteIndicadorConsulta=[];
 
 
 $listbox1 = array();
@@ -112,6 +116,7 @@ $arregloNumeral = $objControlNumeral->listar();
 
 
 if (isset($_POST['bt'])) $boton = $_POST['bt']; //toma del arreglo post el value del bt	
+if (isset($_POST['txtId'])) $id = $_POST['txtId'];
 if (isset($_POST['txtCodigo'])) $codigo = $_POST['txtCodigo'];
 if (isset($_POST['txtNombre'])) $nombre = $_POST['txtNombre'];
 if (isset($_POST['txtObjetivo'])) $objetivo = $_POST['txtObjetivo'];
@@ -132,12 +137,162 @@ if (isset($_POST['listbox3'])) $listbox3 = $_POST['listbox3'];
 if (isset($_POST['listbox2'])) $listbox2 = $_POST['listbox2'];
 if (isset($_POST['listbox1'])) $listbox1 = $_POST['listbox1'];
 
+if (isset($_POST['combobox6']))
+	$combobox6 = $_POST['combobox6'];
+if (isset($_POST['combobox7']))
+	$combobox7 = $_POST['combobox7'];
+if (isset($_POST['combobox8']))
+	$combobox8= $_POST['combobox8'];
+if (isset($_POST['combobox9']))
+	$combobox9 = $_POST['combobox9'];
+if (isset($_POST['combobox10']))
+	$combobox10 = $_POST['combobox10'];
+if (isset($_POST['combobox11']))
+	$combobox11 = $_POST['combobox11'];
+if (isset($_POST['combobox12']))
+	$combobox12 = $_POST['combobox12'];
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $opcionSeleccionada = $_POST["combobox6"];
+    $valores = explode(";", $opcionSeleccionada);
+    $opcion1 = $valores[0];
+  }
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $opcionSeleccionada = $_POST["combobox7"];
+    $valores = explode(";", $opcionSeleccionada);
+    $opcion2 = $valores[0];
+  }
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $opcionSeleccionada = $_POST["combobox8"];
+    $valores = explode(";", $opcionSeleccionada);
+    $opcion3 = $valores[0];
+  }
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $opcionSeleccionada = $_POST["combobox9"];
+    $valores = explode(";", $opcionSeleccionada);
+    $opcion4 = $valores[0];
+  }
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $opcionSeleccionada = $_POST["combobox10"];
+    $valores = explode(";", $opcionSeleccionada);
+    $opcion5 = $valores[0];
+  }
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $opcionSeleccionada = $_POST["combobox11"];
+    $valores = explode(";", $opcionSeleccionada);
+    $opcion6 = $valores[0];
+  }
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $opcionSeleccionada = $_POST["combobox12"];
+    $valores = explode(";", $opcionSeleccionada);
+    $opcion7 = $valores[0];
+  }
+
 switch ($boton) {
-
   case 'Guardar':
-
     $objIndicador = new Indicador(
-      null,
+      $id,
+      $codigo,
+      $nombre,
+      $objetivo,
+      $alcance,
+      $formula,
+      $fktipoindicador = $opcion1,
+      $fkunidadmedicion = $opcion2,
+      $meta,
+      $fkidsentido = $opcion3,
+      $fkidfrecuencia ,
+      $fkidarticulo = $opcion4,
+      $fkidliteral = $opcion5,
+      $fkidnumeral = $opcion6,
+      $fkidparagrafo = $opcion7
+    );
+
+    $objControlIndicador = new ControlIndicador($objIndicador);
+    $objControlIndicador->guardar();
+
+
+    if ($listbox1 != "") {
+			for ($i = 0; $i < count($listbox1); $i++) {
+				$cadenas = explode(";", $listbox1[$i]);
+				$idCadena = $cadenas[0];
+				$objRepresenVisualPorIndicador = new RepresenVisualPorIndicador($id, $idCadena);
+				$objControlRepresenVisualPorIndicador = new ControlRepresenVisualPorIndicador($objRepresenVisualPorIndicador);
+				$objControlRepresenVisualPorIndicador->guardar();
+			}
+		}
+		
+		if ($listbox3 != "") {
+			for ($i = 0; $i < count($listbox3); $i++) {
+				$cadenas = explode(";", $listbox3[$i]);
+				$idCadena = $cadenas[0];
+				$objFuentesPorIndicador = new FuenteIndicador($id,$idCadena);
+				$objControlFuentesPorIndicador = new ControlFuenteIndicador($objFuentesPorIndicador);
+				$objControlFuentesPorIndicador->guardar();
+			}
+		}
+
+		if ($listbox4 != "") {
+			for ($i = 0; $i < count($listbox4); $i++) {
+				$cadenas = explode(";", $listbox4[$i]);
+				$idCadena = $cadenas[0];
+				$objVariablesPorIndicador = new VariableIndicador($id,0,$idCadena,"admin@empresa.com");
+				$objControlVariablesPorIndicador = new ControlVariableIndicador($objVariablesPorIndicador);
+				$objControlVariablesPorIndicador->guardar();
+			}
+
+			
+		} 
+		
+		if ($listbox2 != "") {
+			for ($i = 0; $i < count($listbox2); $i++) {
+				$cadenas = explode(";", $listbox2[$i]);
+				$idCadena = $cadenas[0];
+				$objResponsablePorIndicador = new ResponsablesPorIndicador($idCadena,$id,"");
+				$objControlResponsablePorIndicador = new ControlResponsablesPorIndicador($objResponsablePorIndicador);
+				$objControlResponsablePorIndicador->guardar();
+			}
+		} 
+
+    if ($listbox5 != "") {
+			for ($i = 0; $i < count($listbox5); $i++) {
+				$cadenas = explode(";", $listbox5[$i]);
+				$idCadena = $cadenas[0];
+				$objResultadoPorIndicador = new ResultadoIndicador($idCadena,$id);
+				$objControlResultadoPorIndicador = new ControlResultadoIndicador($objResultadoPorIndicador);
+				$objControlResultadoPorIndicador->guardar();
+			}
+		} 
+
+
+    header('Location: paginaGestionIndicadores.php');
+    break;
+  case 'Consultar':
+		$objIndicador = new Indicador($id, "", "", "", "", "", 0 ,0, "", 0, 0, "", "", "", "");
+		$objControlIndicador = new ControlIndicador($objIndicador);
+		$objIndicador = $objControlIndicador->consultar();
+    $codigo = $objIndicador->getCodigo();
+    $nombre = $objIndicador->getNombre();
+    $objetivo = $objIndicador->getObjetivo();
+    $alcance = $objIndicador->getAlcance();
+    $formula = $objIndicador->getFormula();
+    $fktipoindicador = $objIndicador->getFkTipoIndicador(); 
+    $fkunidadmedicion = $objIndicador->getFkUnidadMedicion(); 
+    $meta = $objIndicador->getMeta();
+    $fkidsentido = $objIndicador->getFkIdSentido(); 
+    $fkidfrecuencia = $objIndicador->getFkIdFrecuencia(); 
+    $fkidarticulo = $objIndicador->getFkIdArticulo();
+    $fkidliteral = $objIndicador->getFkIdLiteral();
+    $fkidnumeral = $objIndicador->getFkIdNumeral();
+    $fkidparagrafo = $objIndicador->getFkIdParagrafo();
+
+    $objControlFuentesPorIndicador = new ControlFuenteIndicador(null);
+		$arregloFuenteIndicadorConsulta = $objControlFuentesPorIndicador->listarFuentesPorIndicador($id);
+    header('Location: paginaGestionIndicadores.php');
+    break;
+  case 'Modificar':
+    $objIndicador = new Indicador(
+      $id,
       $codigo,
       $nombre,
       $objetivo,
@@ -155,14 +310,11 @@ switch ($boton) {
     );
 
     $objControlIndicador = new ControlIndicador($objIndicador);
-    $objControlIndicador->guardar();
+    $objControlIndicador->modificar();
     header('Location: paginaGestionIndicadores.php');
-
     break;
-
   case 'Borrar':
-
-    $objId = new Indicador(
+    $objIndicador = new Indicador(
       $id,
       $codigo,
       $nombre,
@@ -184,54 +336,10 @@ switch ($boton) {
     $objControlIndicador->borrar();
     header('Location: paginaGestionIndicadores.php');
     break;
-
-    case 'Consultar':
-      $objId = new Indicador(
-        $id,
-        $codigo,
-        $nombre,
-        $objetivo,
-        $alcance,
-        $formula,
-        $fktipoindicador,
-        $fkunidadmedicion,
-        $meta,
-        $fkidsentido,
-        $fkidfrecuencia,
-        $fkidarticulo,
-        $fkidliteral,
-        $fkidnumeral,
-        $fkidparagrafo
-      );
   
-      $objControlIndicador = new ControlIndicador($objIndicador);
-      $objControlIndicador->consultar();
-      header('Location: paginaGestionIndicadores.php');
+  default:
+    # code...
     break;
-
-    case 'Modificar':
-      $objId = new Indicador(
-        $id,
-        $codigo,
-        $nombre,
-        $objetivo,
-        $alcance,
-        $formula,
-        $fktipoindicador,
-        $fkunidadmedicion,
-        $meta,
-        $fkidsentido,
-        $fkidfrecuencia,
-        $fkidarticulo,
-        $fkidliteral,
-        $fkidnumeral,
-        $fkidparagrafo
-      );
-  
-      $objControlIndicador = new ControlIndicador($objIndicador);
-      $objControlIndicador->modificar();
-      header('Location: paginaGestionIndicadores.php');
-      break;
 }
 ?>
 
@@ -406,6 +514,10 @@ switch ($boton) {
               <!-- Tab panes -->
               <div class="tab-content">
                 <div id="home" class="container tab-pane active"><br>
+                <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
+                    <label>Id</label>
+                    <input type="text" id="txtId" name="txtId" class="form-control" value="<?php echo $id ?>">
+                  </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
                     <label>Código</label>
                     <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" value="<?php echo $codigo ?>">
@@ -427,8 +539,8 @@ switch ($boton) {
                     <input type="text" id="txtFormula" name="txtFormula" class="form-control" value="<?php echo $formula ?>">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
-                    <label>Tipo de Indicador</label>
-                    <select class="form-control" id="tipoindicador" name="tipoindicador">
+                    <label for="combobox6">Tipo de Indicador</label>
+                    <select class="form-control" id="combobox6" name="combobox6">
                       <?php for ($i = 0; $i < count($arregloTipoIndicador); $i++) { ?>
                         <option value="<?php echo $arregloTipoIndicador[$i]->getId(); ?>">
                           <?php echo $arregloTipoIndicador[$i]->getId(); ?>
@@ -437,8 +549,8 @@ switch ($boton) {
                     </select>
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
-                    <label>Unidad de Medición</label>
-                    <select class="form-control" id="unidadmedicion" name="unidadmedicion">
+                    <label for="combobox7">Unidad de Medición</label>
+                    <select class="form-control" id="combobox7" name="combobox7">
                       <?php for ($i = 0; $i < count($arregloUnidadMedicion); $i++) { ?>
                         <option value="<?php echo $arregloUnidadMedicion[$i]->getId(); ?>">
                           <?php echo $arregloUnidadMedicion[$i]->getId(); ?>
@@ -451,8 +563,8 @@ switch ($boton) {
                     <input type="text" id="txtMeta" name="txtMeta" class="form-control" value="<?php echo $meta ?>">
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
-                    <label>Sentido</label>
-                    <select class="form-control" id="sentido" name="sentido">
+                    <label for="combobox8">Sentido</label>
+                    <select class="form-control" id="combobox8" name="combobox8">
                       <?php for ($i = 0; $i < count($arregloSentido); $i++) { ?>
                         <option value="<?php echo $arregloSentido[$i]->getId(); ?>">
                           <?php echo $arregloSentido[$i]->getId(); ?>
@@ -461,7 +573,7 @@ switch ($boton) {
                     </select>
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
-                    <label>Frecuencia</label>
+                    <label >Frecuencia</label>
                     <select class="form-control" id="frecuencia" name="frecuencia">
                       <?php for ($i = 0; $i < count($arregloFrecuencia); $i++) { ?>
                         <option value="<?php echo $arregloFrecuencia[$i]->getId(); ?>">
@@ -471,8 +583,8 @@ switch ($boton) {
                     </select>
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
-                    <label>Artículo</label>
-                    <select class="form-control" id="articulo" name="articulo">
+                    <label for="combobox9">Artículo</label>
+                    <select class="form-control" id="combobox9" name="combobox9">
                       <?php for ($i = 0; $i < count($arregloArticulo); $i++) { ?>
                         <option value="<?php echo $arregloArticulo[$i]->getId(); ?>">
                           <?php echo $arregloArticulo[$i]->getId(); ?>
@@ -481,8 +593,8 @@ switch ($boton) {
                     </select>
                   </div>
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
-                    <label>Literal</label>
-                    <select class="form-control" id="literal" name="literal">
+                    <label for="combobox10">Literal</label>
+                    <select class="form-control" id="combobox10" name="combobox10">
                       <?php for ($i = 0; $i < count($arregloLiteral); $i++) { ?>
                         <option value="<?php echo $arregloLiteral[$i]->getId(); ?>">
                           <?php echo $arregloLiteral[$i]->getId(); ?>
@@ -492,8 +604,8 @@ switch ($boton) {
                   </div>
 
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
-                    <label>Numeral</label>
-                    <select class="form-control" id="numeral" name="numeral">
+                    <label for="combobox11">Numeral</label>
+                    <select class="form-control" id="combobox11" name="combobox11">
                       <?php for ($i = 0; $i < count($arregloNumeral); $i++) { ?>
                         <option value="<?php echo $arregloNumeral[$i]->getId(); ?>">
                           <?php echo $arregloNumeral[$i]->getId(); ?>
@@ -503,8 +615,8 @@ switch ($boton) {
                   </div>
 
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
-                    <label>Parágrafo</label>
-                    <select class="form-control" id="paragrafo" name="paragrafo">
+                    <label for="combobox11">Parágrafo</label>
+                    <select class="form-control" id="combobox12" name="combobox12">
                       <?php for ($i = 0; $i < count($arregloParagrafo); $i++) { ?>
                         <option value="<?php echo $arregloParagrafo[$i]->getId(); ?>">
                           <?php echo $arregloParagrafo[$i]->getId(); ?>
@@ -592,6 +704,11 @@ switch ($boton) {
                     <br>
                     <label for="listbox3">Fuentes por indicador</label>
                     <select multiple class="form-control" id="listbox3" name="listbox3[]">
+                    <?php for($i=0; $i<count($arregloFuenteIndicadorConsulta); $i++){ ?>
+									         <option value="<?php echo $arregloFuenteIndicadorConsulta[$i]->getId().";". $arregloFuenteIndicadorConsulta[$i]->getNombre(); ?>">
+										      <?php echo $arregloFuenteIndicadorConsulta[$i]->getId().";". $arregloFuenteIndicadorConsulta[$i]->getNombre(); ?>
+									         </option>
+								            	<?php } ?>
                     </select>
 
                   </div>
@@ -634,7 +751,7 @@ switch ($boton) {
 
                   <div style="font-family:'Open Sans',sans-serif;font-size: 14px;" class="form-group">
 
-                    <label for="combobox6">Todos los resultados</label>
+                    <label for="combobox5">Todos los resultados</label>
                     <select class="form-control" id="combobox5" name="combobox5">
                       <?php for ($i = 0; $i < count($arregloResultado); $i++) { ?>
                         <option value="<?php echo $arregloResultado[$i]->getId() . " - " . $arregloResultado[$i]->getResultado(); ?>">
