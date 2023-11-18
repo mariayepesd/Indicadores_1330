@@ -45,7 +45,8 @@
 
 
         function borrar(){
-            $fkindicador= $this->objResponsablesPorIndicador->getFkIdResponsble(); 
+            $fkidresponsable= $this->objResponsablesPorIndicador->getFkIdResponsble(); 
+            $fkindicador= $this->objResponsablesPorIndicador->getFkIndicador(); 
             $comandoSql = "DELETE FROM represenvisualporindicador WHERE fkidresponsable = '$fkidresponsable' AND fkindicador = '$fkindicador'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat'],$GLOBALS['port']);

@@ -1,4 +1,8 @@
 <?php
+$pagina_actual = $_SERVER['REQUEST_URI'];
+if (!strpos($pagina_actual, 'vista/vistaUsuarios.php') !== false) {
+    include 'modelo/Rol.php';
+}
     class ControlRolUsuario{
         var $objRolUsuario;
 
