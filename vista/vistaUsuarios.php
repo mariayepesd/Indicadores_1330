@@ -94,6 +94,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../assets/css/tablaVistaUsuario.css">
+<link href="../assets/css/style.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -101,6 +102,38 @@
 <script src="../vista/assets/js/indicadores.js"></script>
 </head>
 <body>
+<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="paginaInicio.php">Indicadores 1330</a></h1>
+
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
+          <li><a class="nav-link scrollto" href="#legal">Módulo Legal</a></li>
+          <li class="dropdown">
+            <a class="nav-link scrollto" href="javascript:void(0)">Módulo Indicadores</a>
+            <ul class="dropdown-menu">
+              <li><a href="paginaGestionIndicadores.php">Gestión Indicadores</a></li>
+              <hr class="m-0">
+              <li><a href="paginaFuente.php">Página Fuente</a></li>
+              <li><a href="paginaRepresenVisual.php">Página Representación Visual</a></li>
+              <li><a href="paginaSentido.php">Página Sentido</a></li>
+              <li><a href="paginaTipoActor.php">Página Tipo Actor</a></li>
+              <li><a href="paginaTipoIndicador.php">Página Tipo Indicador</a></li>
+              <li><a href="paginaUnidadMedicion.php">Página Unidad Medición</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="vistaUsuarios.php">Módulo Usuarios</a></li>
+          <li><a class="getstarted scrollto" href="#login">Cerrar Sesión</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+
+    </div>
+  </header> 
+  <section id="hero" class="d-flex align-items-center">
 <div class="container-xl">
 	<div class="table-responsive">
 		<div class="table-wrapper">
@@ -138,6 +171,16 @@
 		</div>
 	</div>        
 </div>
+  </section>
+  <div class="container d-md-flex py-4">
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Indicadores</span></strong>. Todos los derechos reservados
+        </div>
+      </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
 <!-- crud Modal HTML -->
 <!-- crud Modal HTML -->
 <div id="crudModal" class="modal fade">

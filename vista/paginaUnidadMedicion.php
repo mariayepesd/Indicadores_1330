@@ -75,22 +75,21 @@
 	
 	<body>
 	
-	  <!-- ======= Header ======= -->
-	  <header id="header" class="fixed-top">
-		<div class="container d-flex align-items-center justify-content-between">
-	
-		  <h1 class="logo"><a href="paginaInicio.php">Indicadores 1330</a></h1>
-	
-	
-		  <nav id="navbar" class="navbar">
+	<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="paginaInicio.php">Indicadores 1330</a></h1>
+
+
+      <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
           <li><a class="nav-link scrollto" href="#legal">Módulo Legal</a></li>
           <li class="dropdown">
             <a class="nav-link scrollto" href="javascript:void(0)">Módulo Indicadores</a>
             <ul class="dropdown-menu">
-			  <li><a href="paginaGestionIndicadores.php">Gestión Indicadores</a></li>
-			  <hr class="m-0">
+              <li><a href="paginaGestionIndicadores.php">Gestión Indicadores</a></li>
+              <hr class="m-0">
               <li><a href="paginaFuente.php">Página Fuente</a></li>
               <li><a href="paginaRepresenVisual.php">Página Representación Visual</a></li>
               <li><a href="paginaSentido.php">Página Sentido</a></li>
@@ -99,14 +98,14 @@
               <li><a href="paginaUnidadMedicion.php">Página Unidad Medición</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#usuarios">Módulo Usuarios</a></li>
-          <li><a class="getstarted scrollto" href="#login">Iniciar Sesión</a></li>
+          <li><a class="nav-link scrollto" href="vistaUsuarios.php">Módulo Usuarios</a></li>
+          <li><a class="getstarted scrollto" href="#login">Cerrar Sesión</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-	
-		</div>
-	  </header><!-- End Header -->
+      </nav>
+
+    </div>
+  </header> 
 	
 	  
 	  <section id="hero" class="mt-5 d-flex align-items-center">

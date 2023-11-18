@@ -82,6 +82,12 @@
       <h1 class="logo"><a href="paginaInicio.php">Indicadores 1330</a></h1>
 
 
+      <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="paginaInicio.php">Indicadores 1330</a></h1>
+
+
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
@@ -96,17 +102,17 @@
               <li><a href="paginaSentido.php">Página Sentido</a></li>
               <li><a href="paginaTipoActor.php">Página Tipo Actor</a></li>
               <li><a href="paginaTipoIndicador.php">Página Tipo Indicador</a></li>
-              <li><a href="paginaUnidadMedicion.php">Página Unidad Medición</a></li>            
+              <li><a href="paginaUnidadMedicion.php">Página Unidad Medición</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#usuarios">Módulo Usuarios</a></li>
-          <li><a class="getstarted scrollto" href="#login">Iniciar Sesión</a></li>
+          <li><a class="nav-link scrollto" href="vistaUsuarios.php">Módulo Usuarios</a></li>
+          <li><a class="getstarted scrollto" href="#login">Cerrar Sesión</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav>
 
     </div>
-  </header><!-- End Header -->
+  </header> 
 
   
   <section id="hero" class="mt-5 d-flex align-items-center">
