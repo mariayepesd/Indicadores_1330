@@ -8,9 +8,12 @@ include_once 'controlador/ControlUsuario.php';
 include_once 'controlador/ControlConexion.php';
 include_once 'controlador/ControlRolUsuario.php';
 include_once 'controlador/ControlRol.php';
-
 include_once 'modelo/Usuario.php';
 
+$error_message = isset($_GET['error']) ? $_GET['error'] : '';
+if ($error_message) {
+	echo '<script>alert("No tienes permisos. Debes ingresar como admin");</script>';
+}
 $email="";
 $contrasena="";
 $boton="";

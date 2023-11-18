@@ -1,5 +1,7 @@
-
 <?php
+ob_start();
+?>
+<?php 
 	include '../controlador/configBd.php';
 	include '../controlador/ControlConexion.php';
 	include '../controlador/ControlUsuario.php';
@@ -8,6 +10,23 @@
 	include '../modelo/Usuario.php';
 	include '../modelo/Rol.php';
 	include '../modelo/RolUsuario.php';
+  	session_start();
+  	if($_SESSION['email']==null)header('Location: ../index.php');
+
+	$permisoParaEntrar=false;
+	$listaRolesDelUsuario=$_SESSION['listaRolesDelUsuario'];
+	for($i=0;$i<count($listaRolesDelUsuario);$i++){
+		if($listaRolesDelUsuario[$i]->nombre=="admin")
+		$permisoParaEntrar=true;
+	}
+	if(!$permisoParaEntrar){
+		header('Location: ../index.php?error=No tienes permisos para acceder');
+		exit();
+	}
+
+?>
+<?php
+
 	$boton = "";
 	$ema = "";
 	$con = "";
@@ -154,3 +173,7 @@
 
 </body>
 </html>
+
+<?php
+  ob_end_flush();
+?>
