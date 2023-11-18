@@ -1,38 +1,28 @@
 <?php
-  ob_start();
-?>
-<?php
-session_start();
-include_once 'controlador/configBd.php';
-include_once 'controlador/ControlUsuario.php';
-include_once 'controlador/ControlConexion.php';
-include_once 'modelo/Usuario.php';
+include 'controlador/configBd.php';
+include 'controlador/ControlUsuario.php';
+include 'controlador/ControlConexion.php';
+include 'modelo/Usuario.php';
 //resto del código php
 $email="";
 $contrasena="";
 $boton="";
+$objControlUsuario = new ControlUsuario(null);
 
 if(isset($_POST['txtEmail']))$email=$_POST['txtEmail'];
 if(isset($_POST['txtContrasena']))$contrasena=$_POST['txtContrasena'];
 if(isset($_POST['btnLogin']))$boton=$_POST['btnLogin'];
-if($boton=="Login"){
-  $validar=false;
-  $sql="SELECT * FROM usuario WHERE email=? AND contrasena=?";
-  $objControlUsuario=new ControlUsuario('usuario');
-  $objUsuario=$objControlUsuario->validarIngreso($sql,[$email,$contrasena]);
-  if($objUsuario){
-    $_SESSION['email']=$email;
-    $objControlRolUsuario = new ControlUsuario('rol_usuario');
-    $sql = "SELECT rol.id as id, rol.nombre as nombre
-        FROM rol_usuario INNER JOIN rol ON rol_usuario.fkidrol = rol.id
-        WHERE fkemail = ?";
-    $parametros = [$email];
-    $listaRolesDelUsuario = $objControlRolUsuario->consultar($sql, $parametros);
-    $_SESSION['listaRolesDelUsuario']=$listaRolesDelUsuario;
-    //var_dump($listaRolesDelUsuario);
-    header('Location: ./vista/menu.php');
-  }
-  else header('Location: index.php');
+switch ($boton) {
+	case 'Ingresar':
+		$objUsuario = new Usuario($email, $contrasena);
+		$objControlUsuario = new ControlUsuario($objUsuario);
+		$validacionExitosa = $objControlUsuario->validarIngreso();
+		if($validacionExitosa){
+			header('Location: vista/paginaInicio.php'); 	
+		}else{
+			echo '<script>alert("Usuario no encontrado/Datos erroneos");</script>';
+		}
+		break;
 }
 ?>
 
@@ -69,7 +59,7 @@ if($boton=="Login"){
 				</div>
 			</div>
 			<div class="card-body">
-				<form>
+				<form action="index.php" method="post">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -92,6 +82,3 @@ if($boton=="Login"){
 </div>
 </body>
 </html>
-<?php
-  ob_end_flush();
-?>

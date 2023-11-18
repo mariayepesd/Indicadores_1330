@@ -53,7 +53,7 @@
               <li><a href="paginaUnidadMedicion.php">Página Unidad Medición</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#usuarios">Módulo Usuarios</a></li>
+          <li><a class="nav-link scrollto" href="vistaUsuarios.php">Módulo Usuarios</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
