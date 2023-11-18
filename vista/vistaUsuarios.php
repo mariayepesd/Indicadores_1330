@@ -129,7 +129,7 @@ ob_start();
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
+          <li><a class="nav-link scrollto active" href="paginaInicio.php">Inicio</a></li>
           <li><a class="nav-link scrollto" href="#legal">Módulo Legal</a></li>
           <li class="dropdown">
             <a class="nav-link scrollto" href="javascript:void(0)">Módulo Indicadores</a>
@@ -145,7 +145,8 @@ ob_start();
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="vistaUsuarios.php">Módulo Usuarios</a></li>
-          <li><a class="getstarted scrollto" href="#login">Cerrar Sesión</a></li>
+		  <li><a class="getstarted scrollto" href="../index.php">Cerrar Sesión</a></li>
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
@@ -159,11 +160,10 @@ ob_start();
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Gestión <b>Usuarios</b></h2>
+						<h2  style="color: white">Gestión <b>Usuarios</b></h2>
 					</div>
 					<div class="col-sm-6">
 						<a href="#crudModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE84E;</i> <span>Gestión Usuarios</span></a>
-						
 					</div>
 				</div>
 			</div>

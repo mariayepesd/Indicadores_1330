@@ -74,15 +74,7 @@
 </head>
 
 <body>
-
-  <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="paginaInicio.php">Indicadores 1330</a></h1>
-
-
-      <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
       <h1 class="logo"><a href="paginaInicio.php">Indicadores 1330</a></h1>
@@ -106,7 +98,7 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="vistaUsuarios.php">Módulo Usuarios</a></li>
-          <li><a class="getstarted scrollto" href="#login">Cerrar Sesión</a></li>
+          <li><a class="getstarted scrollto" href="../index.php">Cerrar Sesión</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
@@ -122,7 +114,7 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Fuente <b>Visual</b></h2></div>
+                    <div class="col-sm-8"><h2> <b>Fuente</b></h2></div>
                     <div class="col-sm-4">
                     <a  href="#crudModal" class="btn btn-info add-new" data-toggle="modal"><i class="fa fa-plus" data-toggle="modal"></i> <span>Administrar Fuente</span></a>                   
                     <!-- <a  href="#crudModalConsultar" class="btn btn-outline-info add-new mt-4" data-toggle="modal"><i class="fa fa-plus" data-toggle="modal"></i> <span>Consultar Fuente</span></a>   -->

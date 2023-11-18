@@ -236,7 +236,7 @@ switch ($boton) {
 			for ($i = 0; $i < count($listbox4); $i++) {
 				$cadenas = explode(";", $listbox4[$i]);
 				$idCadena = $cadenas[0];
-				$objVariablesPorIndicador = new VariableIndicador($id,0,$idCadena,"admin@empresa.com");
+				$objVariablesPorIndicador = new VariableIndicador($id,0,$idCadena,"admin@empresa.com",0,0);
 				$objControlVariablesPorIndicador = new ControlVariableIndicador($objVariablesPorIndicador);
 				$objControlVariablesPorIndicador->guardar();
 			}
@@ -398,7 +398,7 @@ switch ($boton) {
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="vistaUsuarios.php">Módulo Usuarios</a></li>
-          <li><a class="getstarted scrollto" href="#login">Cerrar Sesión</a></li>
+          <li><a class="getstarted scrollto" href="../index.php">Cerrar Sesión</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>

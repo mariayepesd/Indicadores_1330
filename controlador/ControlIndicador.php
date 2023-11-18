@@ -11,7 +11,6 @@
         function guardar() {
 
           try{
-            $id  = $this->objIndicador->getId();
             $codigo = $this->objIndicador->getCodigo();
             $nombre = $this->objIndicador->getNombre();
             $objetivo = $this->objIndicador->getObjetivo();
@@ -27,7 +26,7 @@
             $fkidnumeral = $this->objIndicador->getFkIdNumeral();
             $fkidparagrafo = $this->objIndicador->getFkIdParagrafo();
                 
-            $comandoSql = "INSERT INTO indicador (id,codigo, nombre, objetivo, alcance, formula, fkidtipoindicador, fkidunidadmedicion, meta, 
+            $comandoSql = "INSERT INTO indicador (codigo, nombre, objetivo, alcance, formula, fkidtipoindicador, fkidunidadmedicion, meta, 
             fkidsentido, fkidfrecuencia, fkidarticulo, fkidliteral, fkidnumeral, fkidparagrafo) 
             VALUES ('$codigo', '$nombre', '$objetivo', '$alcance', '$formula', $fktipoindicador, $fkunidadmedicion, '$meta', $fkidsentido, $fkidfrecuencia, 
             '$fkidarticulo', '$fkidliteral', '$fkidnumeral', '$fkidparagrafo')";
