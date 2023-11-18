@@ -93,4 +93,91 @@
         
             return $arregloIndicador;
         }
+
+        function consultar(){
+
+            $cod= $this->objIndicador->getCodigo(); 
+        
+            $comandoSql = "SELECT * FROM indicador WHERE codigo = '$cod'";
+
+            $objControlConexion = new ControlConexion();
+
+            $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
+            $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
+
+            if ($row = $recordSet->fetch_array(MYSQLI_BOTH)){
+
+                    $this->objIndicador->setId($row['id']);
+                    $this->objIndicador->setCodigo($row['codigo']);
+                    $this->objIndicador->setNombre($row['nombre']);
+                    $this->objIndicador->setObjetivo($row['objetivo']);
+                    $this->objIndicador->setAlcance($row['alcance']);
+                    $this->objIndicador->setFormula($row['formula']);
+                    $this->objIndicador->setFkTipoIndicador($row['tipoindicador']);
+                    $this->objIndicador->setFkUnidadMedicion($row['unidadmedicion']);
+                    $this->objIndicador->setMeta($row['meta']);
+                    $this->objIndicador->setFkIdSentido($row['sentido']);
+                    $this->objIndicador->setFkIdFrecuencia($row['fkidfrecuencia']);
+                    $this->objIndicador->setFkIdArticulo($row['articulo']);
+                    $this->objIndicador->setFkIdLiteral($row['literal']);
+                    $this->objIndicador->setFkIdNumeral($row['numeral']);
+                    $this->objIndicador->setFkIdParagrafo($row['paragrafo']);
+            }
+            $objControlConexion->cerrarBd();
+            return $this->objIndicador;
+
+        }
+
+        function modificar(){
+
+            $id = $this->objIndicador->getId(); 
+            $codigo = $this->objIndicador->getCodigo();
+            $nombre = $this->objIndicador->getNombre();
+            $objetivo = $this->objIndicador->getObjetivo();
+            $alcance = $this->objIndicador->getAlcance();
+            $formula = $this->objIndicador->getFormula();
+            $fktipoindicador = $this->objIndicador->getFkTipoIndicador();
+            $fkunidadmedicion = $this->objIndicador->getFkUnidadMedicion();
+            $meta = $this->objIndicador->getMeta();
+            $fkidsentido = $this->objIndicador->getFkIdSentido(); 
+            $fkidfrecuencia = $this->objIndicador->getFkIdFrecuencia();
+            $fkidarticulo = $this->objIndicador->getFkIdArticulo();
+            $fkidliteral = $this->objIndicador->getFkIdLiteral();
+            $fkidnumeral = $this->objIndicador->getFkIdNumeral();
+            $fkidparagrafo = $this->objIndicador->getFkIdParagrafo();
+            
+            $comandoSql = "UPDATE indicador SET 
+                    codigo='$codigo',
+                    nombre='$nombre',
+                    objetivo='$objetivo',
+                    alcance='$alcance',
+                    formula='$formula',
+                    fktipoindicador='$fktipoindicador',
+                    fkunidadmedicion='$fkunidadmedicion',
+                    meta='$meta',
+                    fkidsentido='$fkidsentido',
+                    fkidfrecuencia='$fkidfrecuencia',
+                    fkidarticulo='$fkidarticulo',
+                    fkidliteral='$fkidliteral',
+                    fkidnumeral='$fkidnumeral',
+                    fkidparagrafo='$fkidparagrafo'
+                    WHERE id = '$id'";
+
+            $objControlConexion = new ControlConexion();
+            $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
+            $objControlConexion->ejecutarComandoSql($comandoSql);
+            $objControlConexion->cerrarBd();
+        }
+
+        function borrar(){
+
+            $cod= $this->objIndicador->getCodigo(); 
+            $comandoSql = "DELETE FROM indicador WHERE nombre = '$cod'";
+            $objControlConexion = new ControlConexion();
+            $objControlConexion->abrirBd($GLOBALS['serv'],$GLOBALS['usua'],$GLOBALS['pass'],$GLOBALS['bdat'],$GLOBALS['port']);
+            $objControlConexion->ejecutarComandoSql($comandoSql);
+            $objControlConexion->cerrarBd();
+        }
+
+
     }

@@ -161,11 +161,77 @@ switch ($boton) {
     break;
 
   case 'Borrar':
-    $objFuente = new Fuente($id, $nom);
-    $objControlFuente = new ControlFuente($objFuente);
-    $objControlFuente->borrar();
+
+    $objId = new Indicador(
+      $id,
+      $codigo,
+      $nombre,
+      $objetivo,
+      $alcance,
+      $formula,
+      $fktipoindicador,
+      $fkunidadmedicion,
+      $meta,
+      $fkidsentido,
+      $fkidfrecuencia,
+      $fkidarticulo,
+      $fkidliteral,
+      $fkidnumeral,
+      $fkidparagrafo
+    );
+
+    $objControlIndicador = new ControlIndicador($objIndicador);
+    $objControlIndicador->borrar();
     header('Location: paginaGestionIndicadores.php');
     break;
+
+    case 'Consultar':
+      $objId = new Indicador(
+        $id,
+        $codigo,
+        $nombre,
+        $objetivo,
+        $alcance,
+        $formula,
+        $fktipoindicador,
+        $fkunidadmedicion,
+        $meta,
+        $fkidsentido,
+        $fkidfrecuencia,
+        $fkidarticulo,
+        $fkidliteral,
+        $fkidnumeral,
+        $fkidparagrafo
+      );
+  
+      $objControlIndicador = new ControlIndicador($objIndicador);
+      $objControlIndicador->consultar();
+      header('Location: paginaGestionIndicadores.php');
+    break;
+
+    case 'Modificar':
+      $objId = new Indicador(
+        $id,
+        $codigo,
+        $nombre,
+        $objetivo,
+        $alcance,
+        $formula,
+        $fktipoindicador,
+        $fkunidadmedicion,
+        $meta,
+        $fkidsentido,
+        $fkidfrecuencia,
+        $fkidarticulo,
+        $fkidliteral,
+        $fkidnumeral,
+        $fkidparagrafo
+      );
+  
+      $objControlIndicador = new ControlIndicador($objIndicador);
+      $objControlIndicador->modificar();
+      header('Location: paginaGestionIndicadores.php');
+      break;
 }
 ?>
 
