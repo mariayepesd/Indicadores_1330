@@ -1,9 +1,16 @@
 <?php
-include 'controlador/configBd.php';
-include 'controlador/ControlUsuario.php';
-include 'controlador/ControlConexion.php';
-include 'modelo/Usuario.php';
-//resto del código php
+  ob_start();
+?>
+<?php
+session_start();
+include_once 'controlador/configBd.php';
+include_once 'controlador/ControlUsuario.php';
+include_once 'controlador/ControlConexion.php';
+include_once 'controlador/ControlRolUsuario.php';
+include_once 'controlador/ControlRol.php';
+
+include_once 'modelo/Usuario.php';
+
 $email="";
 $contrasena="";
 $boton="";
@@ -16,8 +23,16 @@ switch ($boton) {
 	case 'Ingresar':
 		$objUsuario = new Usuario($email, $contrasena);
 		$objControlUsuario = new ControlUsuario($objUsuario);
-		$validacionExitosa = $objControlUsuario->validarIngreso();
-		if($validacionExitosa){
+		$validar = $objControlUsuario->validarIngreso();
+		if($validar){
+			$_SESSION['email']=$email;
+			$objControlRolUsuario = new ControlRolUsuario('rol_usuario');
+			$sql = "SELECT rol.id as id, rol.nombre as nombre
+				FROM rol_usuario INNER JOIN rol ON rol_usuario.fkidrol = rol.id
+				WHERE fkemail = $email";
+			$parametros = [$email];
+			$listaRolesDelUsuario = $objControlRolUsuario->listarRolesDelUsuario($email);
+			$_SESSION['listaRolesDelUsuario']=$listaRolesDelUsuario;
 			header('Location: vista/paginaInicio.php'); 	
 		}else{
 			echo '<script>alert("Usuario no encontrado/Datos erroneos");</script>';
@@ -29,21 +44,13 @@ switch ($boton) {
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login Page</title>
-   <!--Made with love by Mutiullah Samim -->
-   
-	<!--Bootsrap 4 CDN-->
+	<title>Iniciar sesión</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    
-    <!--Fontawesome CDN-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-	<!--Custom styles-->
 	<link rel="stylesheet" type="text/css" href="./assets/css/index.css">
 </head>
 <body>
@@ -82,3 +89,6 @@ switch ($boton) {
 </div>
 </body>
 </html>
+<?php
+  ob_end_flush();
+?>
