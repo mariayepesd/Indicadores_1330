@@ -8,30 +8,29 @@
             $this->objUsuario = $objUsuario;
         }
 
-        function validarIngreso() { 
-
-                $msg = "ok";
-                $validar = false;
-                $ema = $this->objUsuario->getEmail(); 
-                $con = $this->objUsuario->getContrasena();
-                $comandoSql = "SELECT * FROM usuario WHERE email='$ema' AND contrasena='$con'";
-                $objControlConexion = new ControlConexion();
-                $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
-                $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
-                try
+        function validarIngreso(){
+            //$msg = "ok";
+            $validar = false;
+            $email = $this->objUsuario->getEmail(); 
+            $contrasena = $this->objUsuario->getContrasena();
+            $comandoSql = "SELECT * FROM usuario WHERE email='$email' AND contrasena='$contrasena'";
+            $objControlConexion = new ControlConexion();
+            $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
+            $recordSet = $objControlConexion->ejecutarSelect($comandoSql);
+            try
+            {
+                if (mysqli_num_rows($recordSet) > 0) 
                 {
-                    if (mysqli_num_rows($recordSet) > 0) 
-                    {
-                        $validar = true;
-                    }
-                    $objControlConexion->cerrarBd();
+                    $validar = true;
                 }
-                catch (Exception $objException)
-                {
-                    $msg = $objException->getMessage();
-                } 
-                return $validar;
-        }
+                $objControlConexion->cerrarBd();
+            }
+            catch (Exception $objExcetion)
+            {
+                $msg = $objExcetion->getMessage();
+            } 
+            return $validar;
+    }
 
         function consultarRolesPorUsuario($email){
 
@@ -75,7 +74,6 @@
         
         function consultar(){
             $ema= $this->objUsuario->getEmail(); 
-        
             $comandoSql = "SELECT * FROM usuario WHERE email = '$ema'";
             $objControlConexion = new ControlConexion();
             $objControlConexion->abrirBd($GLOBALS['serv'], $GLOBALS['usua'], $GLOBALS['pass'], $GLOBALS['bdat'], $GLOBALS['port']);
